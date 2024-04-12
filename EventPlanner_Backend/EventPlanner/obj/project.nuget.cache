@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D+1qqcynEVA=",
+  "dgSpecHash": "1v8WvEdP1CM=",
   "success": true,
-  "projectFilePath": "D:\\LIFE\\Periudha II\\Projekti\\EventPlanner_Backend\\EventPlanner\\EventPlanner.csproj",
+  "projectFilePath": "D:\\LIFE\\Periudha II\\Project\\EventPlanner_Backend\\EventPlanner\\EventPlanner.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\donatk\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\donatk\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.29\\microsoft.entityframeworkcore.6.0.29.nupkg.sha512",

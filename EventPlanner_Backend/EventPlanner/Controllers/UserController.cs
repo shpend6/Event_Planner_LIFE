@@ -19,14 +19,26 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllEvents()
+    public async Task<IActionResult> GetAllUsers()
     {
         var users = await _context.Users.ToListAsync();
         return Ok(users);
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetUser(int id)
+    {
+        var userItem = await _context.Users.FindAsync(id);
+        if (userItem == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(userItem);
+    }
+
     [HttpPost]
-    public async Task<IActionResult> CreateEvent([FromBody] UserDto newUser)
+    public async Task<IActionResult> CreateUser([FromBody] UserDto newUser)
     {
         var userToCreate = new User
         {
@@ -40,5 +52,39 @@ public class UserController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok(userToCreate);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto updatedUser)
+    {
+        var userToUpdate = await _context.Users.FindAsync(id);
+        if (userToUpdate == null)
+        {
+            return NotFound();
+        }
+
+        userToUpdate.FirstName = updatedUser.FirstName;
+        userToUpdate.LastName = updatedUser.LastName;
+        userToUpdate.Email = updatedUser.Email;
+        userToUpdate.PasswordHash = updatedUser.Password;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        var userToDelete = await _context.Users.FindAsync(id);
+        if (userToDelete == null)
+        {
+            return NotFound();
+        }
+
+        _context.Users.Remove(userToDelete);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 }
