@@ -1,4 +1,4 @@
-﻿namespace EventPlanner.Dtos;
+﻿namespace EventPlanner.Server.Dtos;
 
 public class UserDto
 {

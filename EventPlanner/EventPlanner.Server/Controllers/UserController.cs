@@ -1,6 +1,6 @@
 ﻿using EventPlanner.Database;
-using EventPlanner.Dtos;
 using EventPlanner.Models;
+using EventPlanner.Server.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

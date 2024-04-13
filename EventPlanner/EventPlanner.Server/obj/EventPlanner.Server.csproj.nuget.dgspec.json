@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj": {}
+    "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj": {
+    "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj",
+        "projectUniqueName": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj",
         "projectName": "EventPlanner.Server",
-        "projectPath": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj",
+        "projectPath": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj",
         "packagesPath": "C:\\Users\\shpendi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\obj\\",
+        "outputPath": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shpendi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -49,9 +49,27 @@
               "target": "Package",
               "version": "[6.*-*, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "pCdTVr4Wqq5tvrat2pv5/8x5uJrDU1DdZi37iWUtgMc=",
+  "Hash": "JOSwQbvb5gY61Em1GqN6kHIEXMMowV+P3HJlQX3lRO8=",
   "Source": "EventPlanner.Server",
   "BasePath": "_content/EventPlanner.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\eventplanner.client\\eventplanner.client.esproj",
+      "Identity": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\eventplanner.client.esproj",
       "Version": 2,
       "Source": "eventplanner.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
