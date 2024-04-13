@@ -1,8 +1,7 @@
-﻿using EventPlanner.Database;
-using EventPlanner.Dtos;
+﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Controllers;
 
@@ -10,25 +9,24 @@ namespace EventPlanner.Controllers;
 [Route("/api/events")]
 public class EventController : ControllerBase
 {
-    // After EventService is implemented, remove the context and inject the service instead
-    private readonly EventPlannerDbContext _context;
+    private readonly IEventService _eventService;
 
-    public EventController(EventPlannerDbContext context)
+    public EventController(IEventService eventService)
     {
-        _context = context;
+        _eventService = eventService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAllEvents()
     {
-        var events = await _context.Events.ToListAsync();
+        var events = await _eventService.GetAllEventsAsync();
         return Ok(events);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetEvent(int id)
     {
-        var eventItem = await _context.Events.FindAsync(id);
+        var eventItem = await _eventService.GetEventByIdAsync(id);
         if (eventItem == null)
         {
             return NotFound();
@@ -42,7 +40,7 @@ public class EventController : ControllerBase
     {
         var eventToCreate = new Event
         {
-            UserId = 1, // Assumed a fixed user ID for now, will replace with actual user later
+            UserId = newEvent.UserId, // Replace with actual user session or identity later
             Title = newEvent.Title,
             Description = newEvent.Description,
             Location = newEvent.Location,
@@ -50,28 +48,30 @@ public class EventController : ControllerBase
             MaxCapacity = newEvent.MaxCapacity
         };
 
-        _context.Events.Add(eventToCreate);
-        await _context.SaveChangesAsync();
+        var createdEvent = await _eventService.CreateEventAsync(eventToCreate);
 
-        return Ok(eventToCreate);
+        return Ok(createdEvent);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDto updatedEvent)
     {
-        var eventToUpdate = await _context.Events.FindAsync(id);
-        if (eventToUpdate == null)
+        var eventItem = await _eventService.GetEventByIdAsync(id);
+        if (eventItem == null)
         {
             return NotFound();
         }
 
-        eventToUpdate.Title = updatedEvent.Title;
-        eventToUpdate.Description = updatedEvent.Description;
-        eventToUpdate.Location = updatedEvent.Location;
-        eventToUpdate.ScheduledTime = updatedEvent.ScheduledTime;
-        eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity;
+        var eventToUpdate = new Event
+        {
+            Title = updatedEvent.Title,
+            Description = updatedEvent.Description,
+            Location = updatedEvent.Location,
+            ScheduledTime = updatedEvent.ScheduledTime,
+            MaxCapacity = updatedEvent.MaxCapacity
+        };
 
-        await _context.SaveChangesAsync();
+        await _eventService.UpdateEventAsync(id, eventToUpdate);
 
         return NoContent();
     }
@@ -79,15 +79,13 @@ public class EventController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteEvent(int id)
     {
-        var eventToDelete = await _context.Events.FindAsync(id);
-        if (eventToDelete == null)
+        var eventItem = await _eventService.GetEventByIdAsync(id);
+        if (eventItem == null)
         {
             return NotFound();
         }
 
-        _context.Events.Remove(eventToDelete);
-        await _context.SaveChangesAsync();
-
+        await _eventService.DeleteEventAsync(eventItem.Id);
         return NoContent();
     }
 }
