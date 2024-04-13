@@ -12,29 +12,47 @@ public class EventService : IEventService
     {
         _dbContext = dbContext;
     }
-    // The methods below have to be implemented
-    public Task<IEnumerable<Event>> GetAllEventsAsync()
+
+    public async Task<IEnumerable<Event>> GetAllEventsAsync()
     {
-        throw new NotImplementedException();
+        return await _dbContext.Events.ToListAsync();
     }
 
-    public Task<Event> GetEventByIdAsync(int eventId)
+    public async Task<Event> GetEventByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Events.FindAsync(id);
     }
 
-    public Task<Event> CreateEventAsync(Event newEvent)
+    public async Task<Event> CreateEventAsync(Event newEvent)
     {
-        throw new NotImplementedException();
+        _dbContext.Events.Add(newEvent);
+        await _dbContext.SaveChangesAsync();
+        return newEvent;
     }
 
-    public Task UpdateEventAsync(int eventId, Event updatedEvent)
+    public async Task UpdateEventAsync(int id, Event updatedEvent)
     {
-        throw new NotImplementedException();
+        var eventToUpdate = await _dbContext.Events.FindAsync(id);
+        if (eventToUpdate != null)
+        {
+            eventToUpdate.Title = updatedEvent.Title;
+            eventToUpdate.Description = updatedEvent.Description;
+            eventToUpdate.Location = updatedEvent.Location;
+            eventToUpdate.ScheduledTime = updatedEvent.ScheduledTime;
+            eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity;
+
+            await _dbContext.SaveChangesAsync();
+        }
     }
 
-    public Task DeleteEventAsync(int eventId)
+    public async Task DeleteEventAsync(int id)
     {
-        throw new NotImplementedException();
+        var eventToDelete = await _dbContext.Events.FindAsync(id);
+
+        if (eventToDelete != null)
+        {
+            _dbContext.Events.Remove(eventToDelete);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
