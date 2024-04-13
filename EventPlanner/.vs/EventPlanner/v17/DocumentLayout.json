@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|solutionrelative:eventplanner.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\nuget.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\nuget.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|solutionrelative:eventplanner.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\dtos\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|solutionrelative:eventplanner.server\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,14 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.server\\models\\attendee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{140302D6-47DE-458D-91A3-A78CB226D86C}|EventPlanner.Server\\EventPlanner.Server.csproj|solutionrelative:eventplanner.server\\models\\attendee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|c:\\users\\shpendi\\desktop\\gjirafa\\event_planner_life\\eventplanner\\eventplanner.client\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7264D4FB-806E-4AC5-8182-D9ECE8064F2C}|eventplanner.client\\eventplanner.client.esproj|solutionrelative:eventplanner.client\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,10 +75,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -97,34 +97,37 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\.gitignore",
-              "RelativeDocumentMoniker": "eventplanner.client\\.gitignore",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\.gitignore",
-              "RelativeToolTip": "eventplanner.client\\.gitignore",
+              "DocumentIndex": 3,
+              "Title": "nuget.config",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\nuget.config",
+              "RelativeDocumentMoniker": "eventplanner.client\\nuget.config",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\nuget.config",
+              "RelativeToolTip": "eventplanner.client\\nuget.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHgSURBVEhLtZVdTsJAFIWroTyDK3ELJuCbsA1ZhQRFRETkV6yV8AAsgAI\u002BugW3wAr0RUop7Tj3dmagtLXFhJOc3mEynXu\u002BSWmlg4oQcsSGqOFwSKcIzAcY7rFZdeZkWf42DOMsl7v8ZNsEazAYEMuyXF5zr7nXWG3bJqPRiMznc6Kqb1\u002BtdueUbePSMasoSASiN0sW2AJbwrSRMKwBJZNJKZVOJeJx\u002BaPRbHma\u002BDbAqzOMpBPa5DydxiZsSijGKoo30MZjrH8pm81iVRQFKygmxxNs6K9\u002Bv4/nvlqZ1CticBuOl8IGWS4NogsviWmuSe2p7uH2EMAKTQsn2FUmkxUnEKher4dPjH9ymjogva47BNXHWhgBXCRpomnOxB6KRKCqKhJsznoneUD6BSOoPFSjEUwnByJQlFf8l7rTO6ndyalZcm7TNEn5vhJG4CD8h\u002BAikwkn6HZf8F3jSSu8OfNt/yx0sqIEpbtyOAGsmE4nzsQeikTQ7jwTkxKItCyxX2qenBsIirelcAJAmB2KoNlq4/Psl1Z4K/UuQeGmGIGA6n02xbqPgIBuwH4FqN5o4vMMKYOSBhkI8oVrTwfPBwdWxOQYWt7D/P5duT768D7HJhFtU9MBVj5XyF\u002B59jywJOkX7ucXnGOxDX8AAAAASUVORK5CYII=",
-              "WhenOpened": "2024-04-13T21:22:43.684Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-04-13T21:42:17.456Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "package.json",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\package.json",
-              "RelativeDocumentMoniker": "eventplanner.client\\package.json",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\package.json",
-              "RelativeToolTip": "eventplanner.client\\package.json",
+              "DocumentIndex": 5,
+              "Title": "vite.config.js",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\vite.config.js",
+              "RelativeDocumentMoniker": "eventplanner.client\\vite.config.js",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\vite.config.js",
+              "RelativeToolTip": "eventplanner.client\\vite.config.js",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-13T21:22:42.889Z",
-              "EditorCaption": ""
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-13T21:42:16.368Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "EventDto.cs",
               "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Dtos\\EventDto.cs",
               "RelativeDocumentMoniker": "EventPlanner.Server\\Dtos\\EventDto.cs",
@@ -132,68 +135,11 @@
               "RelativeToolTip": "EventPlanner.Server\\Dtos\\EventDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:21:30.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T21:21:30.702Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "EventPlannerDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:09:05.03Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\UserController.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:04:55.638Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "20240413210437_InitalMigration.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:09:03.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EventController.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\EventController.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Controllers\\EventController.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\EventController.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Controllers\\EventController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:04:42.203Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\src\\App.css",
               "RelativeDocumentMoniker": "eventplanner.client\\src\\App.css",
@@ -206,7 +152,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\.gitignore",
+              "RelativeDocumentMoniker": "eventplanner.client\\.gitignore",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\.gitignore",
+              "RelativeToolTip": "eventplanner.client\\.gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHgSURBVEhLtZVdTsJAFIWroTyDK3ELJuCbsA1ZhQRFRETkV6yV8AAsgAI\u002BugW3wAr0RUop7Tj3dmagtLXFhJOc3mEynXu\u002BSWmlg4oQcsSGqOFwSKcIzAcY7rFZdeZkWf42DOMsl7v8ZNsEazAYEMuyXF5zr7nXWG3bJqPRiMznc6Kqb1\u002BtdueUbePSMasoSASiN0sW2AJbwrSRMKwBJZNJKZVOJeJx\u002BaPRbHma\u002BDbAqzOMpBPa5DydxiZsSijGKoo30MZjrH8pm81iVRQFKygmxxNs6K9\u002Bv4/nvlqZ1CticBuOl8IGWS4NogsviWmuSe2p7uH2EMAKTQsn2FUmkxUnEKher4dPjH9ymjogva47BNXHWhgBXCRpomnOxB6KRKCqKhJsznoneUD6BSOoPFSjEUwnByJQlFf8l7rTO6ndyalZcm7TNEn5vhJG4CD8h\u002BAikwkn6HZf8F3jSSu8OfNt/yx0sqIEpbtyOAGsmE4nzsQeikTQ7jwTkxKItCyxX2qenBsIirelcAJAmB2KoNlq4/Psl1Z4K/UuQeGmGIGA6n02xbqPgIBuwH4FqN5o4vMMKYOSBhkI8oVrTwfPBwdWxOQYWt7D/P5duT768D7HJhFtU9MBVj5XyF\u002B59jywJOkX7ucXnGOxDX8AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-04-13T21:22:43.684Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\package.json",
+              "RelativeDocumentMoniker": "eventplanner.client\\package.json",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\package.json",
+              "RelativeToolTip": "eventplanner.client\\package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-13T21:22:42.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\src\\App.jsx",
               "RelativeDocumentMoniker": "eventplanner.client\\src\\App.jsx",
@@ -219,33 +189,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Dtos\\UserDto.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Dtos\\UserDto.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Dtos\\UserDto.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Dtos\\UserDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:21:25.403Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Attendee.cs",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Models\\Attendee.cs",
-              "RelativeDocumentMoniker": "EventPlanner.Server\\Models\\Attendee.cs",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Models\\Attendee.cs",
-              "RelativeToolTip": "EventPlanner.Server\\Models\\Attendee.cs",
+              "DocumentIndex": 12,
+              "Title": "EventPlannerDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Migrations\\EventPlannerDbContextModelSnapshot.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:04:31.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T21:09:05.03Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:04:55.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\src\\main.jsx",
               "RelativeDocumentMoniker": "eventplanner.client\\src\\main.jsx",
@@ -258,16 +226,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "index.html",
-              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\index.html",
-              "RelativeDocumentMoniker": "eventplanner.client\\index.html",
-              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\eventplanner.client\\index.html",
-              "RelativeToolTip": "eventplanner.client\\index.html",
+              "DocumentIndex": 11,
+              "Title": "20240413210437_InitalMigration.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Migrations\\20240413210437_InitalMigration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-04-13T20:44:14.325Z",
-              "EditorCaption": ""
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:09:03.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\EventController.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Controllers\\EventController.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Controllers\\EventController.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Controllers\\EventController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:04:42.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Dtos\\UserDto.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Dtos\\UserDto.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Dtos\\UserDto.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Dtos\\UserDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:21:25.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Attendee.cs",
+              "DocumentMoniker": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Models\\Attendee.cs",
+              "RelativeDocumentMoniker": "EventPlanner.Server\\Models\\Attendee.cs",
+              "ToolTip": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\Models\\Attendee.cs",
+              "RelativeToolTip": "EventPlanner.Server\\Models\\Attendee.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:04:31.529Z"
             }
           ]
         },
