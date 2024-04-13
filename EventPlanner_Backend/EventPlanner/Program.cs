@@ -8,6 +8,7 @@ builder.Services.AddDbContext<EventPlannerDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("EventPlannerDb")));
 
 // Add services to the container.
+builder.Services.AddScoped<IEventService, EventService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
