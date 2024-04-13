@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "WEGbL79nL9DxmhMMIAUuUJTDH+PZFSg5DJHe5KyRSnrx7u3vzdrqCd67LQ7+L8S4xY81mnZqP7fzmPHZ2hOm/A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\EventPlanner.Server\\EventPlanner.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\shpendi\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.29\\microsoft.aspnetcore.spaproxy.6.0.29.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\shpendi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

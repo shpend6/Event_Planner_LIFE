@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "pCdTVr4Wqq5tvrat2pv5/8x5uJrDU1DdZi37iWUtgMc=",
+  "Source": "EventPlanner.Server",
+  "BasePath": "_content/EventPlanner.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\shpendi\\Desktop\\EventPlanner\\eventplanner.client\\eventplanner.client.esproj",
+      "Version": 2,
+      "Source": "eventplanner.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

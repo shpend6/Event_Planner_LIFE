@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\EventPlanner.Server.props" />
+</Project>
