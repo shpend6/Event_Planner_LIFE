@@ -2,7 +2,7 @@
 using EventPlanner.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventPlanner.Services;
+namespace EventPlanner.Server.Services.EventService;
 
 public class EventService : IEventService
 {

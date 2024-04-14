@@ -1,6 +1,6 @@
 ﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
-using EventPlanner.Services;
+using EventPlanner.Server.Services.EventService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventPlanner.Controllers;
@@ -79,13 +79,13 @@ public class EventController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteEvent(int id)
     {
-        var eventItem = await _eventService.GetEventByIdAsync(id);
-        if (eventItem == null)
+        var eventToDelete = await _eventService.GetEventByIdAsync(id);
+        if (eventToDelete == null)
         {
             return NotFound();
         }
 
-        await _eventService.DeleteEventAsync(eventItem.Id);
+        await _eventService.DeleteEventAsync(eventToDelete.Id);
         return NoContent();
     }
 }

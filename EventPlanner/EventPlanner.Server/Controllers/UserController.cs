@@ -1,8 +1,6 @@
-﻿using EventPlanner.Database;
-using EventPlanner.Models;
-using EventPlanner.Server.Dtos;
+﻿using EventPlanner.Server.Dtos;
+using EventPlanner.Server.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Controllers;
 
@@ -10,25 +8,24 @@ namespace EventPlanner.Controllers;
 [Route("/api/users")]
 public class UserController : ControllerBase
 {
-    // After EventService is implemented, remove the context and inject the service instead
-    private readonly EventPlannerDbContext _context;
+    private readonly IUserService _userService;
 
-    public UserController(EventPlannerDbContext context)
+    public UserController(IUserService userService)
     {
-        _context = context;
+        _userService = userService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await _userService.GetAllUsersAsync();
         return Ok(users);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
     {
-        var userItem = await _context.Users.FindAsync(id);
+        var userItem = await _userService.GetUserByIdAsync(id);
         if (userItem == null)
         {
             return NotFound();
@@ -37,54 +34,36 @@ public class UserController : ControllerBase
         return Ok(userItem);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateUser([FromBody] UserDto newUser)
+    [HttpPost("signup")]
+    public async Task<IActionResult> SignUp([FromBody] SignUpDto newUser)
     {
-        var userToCreate = new User
-        {
-            FirstName = newUser.FirstName,
-            LastName = newUser.LastName,
-            Email = newUser.Email, 
-            PasswordHash = newUser.Password
-        };
-
-        _context.Users.Add(userToCreate);
-        await _context.SaveChangesAsync();
-
+        var userToCreate = await _userService.CreateUserAsync(newUser);
         return Ok(userToCreate);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto updatedUser)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginDto userLogin)
     {
-        var userToUpdate = await _context.Users.FindAsync(id);
-        if (userToUpdate == null)
+        var user = await _userService.AuthenticateUserAsync(userLogin.Email, userLogin.Password);
+        if (user == null)
         {
-            return NotFound();
+            return Unauthorized();
         }
 
-        userToUpdate.FirstName = updatedUser.FirstName;
-        userToUpdate.LastName = updatedUser.LastName;
-        userToUpdate.Email = updatedUser.Email;
-        userToUpdate.PasswordHash = updatedUser.Password;
-
-        await _context.SaveChangesAsync();
-
-        return NoContent();
+        //var token = _tokenServiceGenerateJwtToken(user);
+        return Ok(user);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        var userToDelete = await _context.Users.FindAsync(id);
+        var userToDelete = await _userService.GetUserByIdAsync(id);
         if (userToDelete == null)
         {
             return NotFound();
         }
 
-        _context.Users.Remove(userToDelete);
-        await _context.SaveChangesAsync();
-
+        await _userService.DeleteUserAsync(userToDelete.Id);
         return NoContent();
     }
 }
