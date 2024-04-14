@@ -1,6 +1,6 @@
 ﻿using EventPlanner.Models;
 
-namespace EventPlanner.Services;
+namespace EventPlanner.Server.Services.EventService;
 
 public interface IEventService
 {
