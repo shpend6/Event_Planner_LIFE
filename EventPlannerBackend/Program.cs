@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:5174");
+                          policy.WithOrigins("http://localhost:5174", "http://localhost:5173");
                       });
 });
 builder.Services.AddDbContext<EventPlannerDbContext>(options =>
