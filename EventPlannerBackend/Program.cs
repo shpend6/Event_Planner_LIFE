@@ -2,8 +2,10 @@ using EventPlanner.Database;
 using EventPlanner.Server.Services.EventService;
 using EventPlanner.Server.Services.UserService;
 using Microsoft.EntityFrameworkCore;
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -12,6 +14,7 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins("http://localhost:5174", "http://localhost:5173");
                       });
 });
+
 builder.Services.AddDbContext<EventPlannerDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("EventPlannerDb")));
 
