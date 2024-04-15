@@ -21,7 +21,7 @@ const UserList: React.FC = () => {
   );
 
   if (error) return <div>Errorrrr fetching data</div>;
-  if (!users) return <div>Loading...</div>;
+  if (!users) return <div>Loadingggg...</div>;
 
   return (
     <div>
