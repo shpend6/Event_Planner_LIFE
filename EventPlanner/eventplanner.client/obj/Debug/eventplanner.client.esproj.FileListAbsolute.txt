@@ -1,2 +1,0 @@
-C:\Users\shpendi\Desktop\EventPlanner\eventplanner.client\obj\Debug\eventplanner.client.esproj.CoreCompileInputs.cache
-C:\Users\shpendi\Desktop\GJirafa\Event_Planner_LIFE\EventPlanner\eventplanner.client\obj\Debug\eventplanner.client.esproj.CoreCompileInputs.cache

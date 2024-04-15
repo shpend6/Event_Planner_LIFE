@@ -1,8 +1,0 @@
-{
-"SpaProxyServer": {
-"ServerUrl": "https://localhost:5173",
-"LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\shpendi\\Desktop\\GJirafa\\Event_Planner_LIFE\\EventPlanner\\EventPlanner.Server\\..\\eventplanner.client",
-"MaxTimeoutInSeconds": "120"
-}
-}
