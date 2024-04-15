@@ -25,8 +25,17 @@ public class EventService : IEventService
 
     public async Task<Event> CreateEventAsync(Event newEvent)
     {
+        // Check if any existing event is scheduled at the same time
+        bool existingEvent = await _dbContext.Events.AnyAsync(e => e.ScheduledTime == newEvent.ScheduledTime);
+
+        if (existingEvent)
+        {
+            throw new Exception("An event is already scheduled for this time.");
+        }
+
         _dbContext.Events.Add(newEvent);
         await _dbContext.SaveChangesAsync();
+
         return newEvent;
     }
 
@@ -35,6 +44,15 @@ public class EventService : IEventService
         var eventToUpdate = await _dbContext.Events.FindAsync(id);
         if (eventToUpdate != null)
         {
+            // Check if another event (except for this one) is scheduled at the same time
+            bool conflictExists = await _dbContext.Events.AnyAsync(e => e.Id != id 
+                && e.ScheduledTime == updatedEvent.ScheduledTime);
+
+            if (conflictExists)
+            {
+                throw new Exception("An event is already scheduled for this time.");
+            }
+
             eventToUpdate.Title = updatedEvent.Title;
             eventToUpdate.Description = updatedEvent.Description;
             eventToUpdate.Location = updatedEvent.Location;

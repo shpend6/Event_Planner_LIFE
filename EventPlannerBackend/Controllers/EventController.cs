@@ -40,7 +40,7 @@ public class EventController : ControllerBase
     {
         var eventToCreate = new Event
         {
-            UserId = newEvent.UserId, // Replace with actual user session or identity later
+            UserId = newEvent.UserId, // Replace with actual user identity later (After completing token authentication)
             Title = newEvent.Title,
             Description = newEvent.Description,
             Location = newEvent.Location,
