@@ -29,6 +29,14 @@ public class UserService : IUserService
 
     public async Task<User> CreateUserAsync(SignUpDto newUser)
     {
+        // Check if the email already exists
+        var existingUser = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == newUser.Email);
+
+        if (existingUser != null)
+        {
+            throw new Exception("Email already in use.");
+        }
+
         var userToCreate = new User
         {
             FirstName = newUser.FirstName,
@@ -51,9 +59,8 @@ public class UserService : IUserService
         if (user == null)
             return null;
 
-        // Verify the hashed password
-        var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
-        if (result == PasswordVerificationResult.Failed)
+        var checkPassword = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+        if (checkPassword == PasswordVerificationResult.Failed)
             return null;
 
         return user;
