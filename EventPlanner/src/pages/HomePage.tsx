@@ -11,7 +11,7 @@ interface User {
   createdEvents: unknown; // You can define the type for these properties as well if needed
   eventsAttending: unknown;
 }
-
+// besarta
 const fetcher = (url: string) => axios.get<User[]>(url).then((res) => res.data);
 
 const UserList: React.FC = () => {
