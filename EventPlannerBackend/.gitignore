@@ -1,0 +1,92 @@
+# Visual Studio temporary files
+.vs/
+/bin/
+/obj/
+
+# Rider temporary files
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet packages
+/packages/
+*.nupkg
+*.paket.template
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Resharper
+_ReSharper*/
+
+# GhostDoc
+[Gg]host[Dd]oc/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Local database file
+*.db
+
+# Visual Studio files
+.vscode/
+*.sln.ide
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
