@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./pages/HomePage.tsx";
+import App from "./pages/TestingPage.tsx";
 import "./index.css";
 import { SWRConfig } from "swr";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
