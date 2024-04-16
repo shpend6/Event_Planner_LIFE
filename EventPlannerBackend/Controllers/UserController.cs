@@ -1,6 +1,8 @@
-﻿using EventPlanner.Server.Dtos;
+﻿using EventPlanner.Models;
+using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EventPlanner.Controllers;
 
@@ -50,7 +52,6 @@ public class UserController : ControllerBase
             return Unauthorized();
         }
 
-        //var token = _tokenServiceGenerateJwtToken(user);
         return Ok(user);
     }
 
