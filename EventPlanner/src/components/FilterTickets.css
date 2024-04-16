@@ -1,0 +1,14 @@
+.filter_tickets{
+    margin: 50px 100px;
+}
+.filter_tickets h2 {
+    border: 1px solid white;
+    border-bottom: 1px solid rgb(101, 65, 143);
+}
+.block{
+    display: block;
+}
+.dropdown{
+    display: flex;
+    justify-content: flex-start;
+}
