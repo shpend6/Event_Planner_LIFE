@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlanner.Server.Dtos;
+using EventPlannerBackend.Services.TokenService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ public class UserService : IUserService
 {
     private readonly EventPlannerDbContext _dbContext;
     private readonly PasswordHasher<User> _passwordHasher;
+    private readonly ITokenService _tokenService;
 
-    public UserService(EventPlannerDbContext dbContext)
+    public UserService(EventPlannerDbContext dbContext, ITokenService tokenService)
     {
         _dbContext = dbContext;
+        _tokenService = tokenService;
         _passwordHasher = new PasswordHasher<User>();
     }
 
@@ -53,7 +56,7 @@ public class UserService : IUserService
         return userToCreate;
     }
 
-    public async Task<User> AuthenticateUserAsync(string email, string password)
+    public async Task<string> AuthenticateUserAsync(string email, string password)
     {
         var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
         if (user == null)
@@ -63,7 +66,7 @@ public class UserService : IUserService
         if (checkPassword == PasswordVerificationResult.Failed)
             return null;
 
-        return user;
+        return _tokenService.GenerateToken(user);
     }
 
     public async Task DeleteUserAsync(int id)
