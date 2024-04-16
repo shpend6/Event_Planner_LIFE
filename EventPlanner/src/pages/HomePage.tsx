@@ -1,41 +1,30 @@
 import React from "react";
-import useSWR from "swr";
-import axios from "axios";
+import { useUser } from "../hooks/useUsers";
 
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  passwordHash: string;
-  createdEvents: unknown; // You can define the type for these properties as well if needed
-  eventsAttending: unknown;
-}
 // besarta
-const fetcher = (url: string) => axios.get<User[]>(url).then((res) => res.data);
 
 const UserList: React.FC = () => {
-  const { data: users, error } = useSWR<User[]>(
-    "https://localhost:7142/api/users",
-    fetcher
-  );
+  const { data, isLoading, error } = useUser();
 
-  if (error) return <div>Error fetching data</div>;
-  if (!users) return <div>Loading...</div>;
-
-  return (
-    <div>
-      <h1>User List</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <strong>First Name:</strong> {user.firstName},{" "}
-            <strong>Last Name:</strong> {user.lastName}, <strong>Email:</strong>{" "}
-            {user.email}
-          </li>
-        ))}
-      </ul>
-    </div>
+  return error ? (
+    <div> data couldnt be fetched</div>
+  ) : isLoading ? (
+    <div> Loading..</div>
+  ) : (
+    data && (
+      <div>
+        <h1>User List</h1>
+        <ul>
+          {data.map((user) => (
+            <li key={user.id}>
+              <strong>First Name:</strong> {user.firstName},{" "}
+              <strong>Last Name:</strong> {user.lastName},{" "}
+              <strong>Email:</strong> {user.email}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   );
 };
 
