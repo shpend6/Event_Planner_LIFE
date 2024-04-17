@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
+using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,10 +13,12 @@ namespace EventPlanner.Controllers;
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
+    private readonly IAttendeeService _attendeeService;
 
-    public EventController(IEventService eventService)
+    public EventController(IEventService eventService, IAttendeeService attendeeService)
     {
         _eventService = eventService;
+        _attendeeService = attendeeService;
     }
 
     [HttpGet]
@@ -109,5 +112,12 @@ public class EventController : ControllerBase
 
         await _eventService.DeleteEventAsync(eventToDelete.Id);
         return NoContent();
+    }
+
+    [HttpGet("{id}/attendees")]
+    public async Task<IActionResult> GetEventAttendees(int id)
+    {
+        var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
+        return Ok(attendees);
     }
 }

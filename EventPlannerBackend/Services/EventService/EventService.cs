@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
+using EventPlannerBackend.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Server.Services.EventService;
@@ -72,5 +73,20 @@ public class EventService : IEventService
             _dbContext.Events.Remove(eventToDelete);
             await _dbContext.SaveChangesAsync();
         }
+    }
+
+    public async Task<List<AttendeeDto>> GetAttendeesByEventIdAsync(int id)
+    {
+        return await _dbContext.Attendees
+            .Where(a => a.EventId == id)
+            .Select(a => new AttendeeDto
+            {
+                UserId = a.UserId,
+                FirstName = a.User.FirstName,
+                LastName = a.User.LastName,
+                Email = a.User.Email,
+                JoinedAt = a.JoinedAt
+            })
+            .ToListAsync();
     }
 }

@@ -2,6 +2,7 @@ using EventPlanner.Database;
 using EventPlanner.Server.Services.EventService;
 using EventPlanner.Server.Services.UserService;
 using EventPlannerBackend.Services.TokenService;
+using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<EventPlannerDbContext>(options =>
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAttendeeService, AttendeeService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
