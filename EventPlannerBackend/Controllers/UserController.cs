@@ -1,8 +1,6 @@
-﻿using EventPlanner.Models;
-using EventPlanner.Server.Dtos;
+﻿using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace EventPlanner.Controllers;
 
