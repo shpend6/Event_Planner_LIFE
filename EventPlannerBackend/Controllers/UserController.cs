@@ -65,4 +65,30 @@ public class UserController : ControllerBase
         await _userService.DeleteUserAsync(userToDelete.Id);
         return NoContent();
     }
+
+    [HttpGet("{id}/events-created")]
+    public async Task<IActionResult> GetUserCreatedEvents(int id)
+    {
+        var eventsCreated = await _userService.GetUserCreatedEventsAsync(id);
+
+        if (eventsCreated == null || !eventsCreated.Any())
+        {
+            return NotFound("This user has not created any events.");
+        }
+
+        return Ok(eventsCreated);
+    }
+
+    [HttpGet("{id}/events-attending")]
+    public async Task<IActionResult> GetUserAttendingEvents(int id)
+    {
+        var eventsAttending = await _userService.GetUserAttendingEventsAsync(id);
+
+        if (eventsAttending == null || !eventsAttending.Any())
+        {
+            return NotFound("This user is not attending any events.");
+        }
+
+        return Ok(eventsAttending);
+    }
 }
