@@ -10,4 +10,6 @@ public interface IUserService
     Task<User> CreateUserAsync(SignUpDto newUser);
     Task<string> AuthenticateUserAsync(string email, string password);
     Task DeleteUserAsync(int id);
+    Task<List<Event>> GetUserCreatedEventsAsync(int id);
+    Task<List<Event>> GetUserAttendingEventsAsync(int id);
 }
