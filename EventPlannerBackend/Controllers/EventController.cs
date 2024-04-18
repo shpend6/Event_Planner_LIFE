@@ -52,8 +52,10 @@ public class EventController : ControllerBase
             UserId = int.Parse(userId),
             Title = newEvent.Title,
             Description = newEvent.Description,
+            State = newEvent.State,
             Location = newEvent.Location,
-            ScheduledTime = newEvent.ScheduledTime,
+            StartTime = newEvent.StartTime,
+            EndTime = newEvent.EndTime,
             MaxCapacity = newEvent.MaxCapacity
         };
 
@@ -83,8 +85,10 @@ public class EventController : ControllerBase
         {
             Title = updatedEvent.Title,
             Description = updatedEvent.Description,
+            State = updatedEvent.State,
             Location = updatedEvent.Location,
-            ScheduledTime = updatedEvent.ScheduledTime,
+            StartTime = updatedEvent.StartTime,
+            EndTime = updatedEvent.EndTime,
             MaxCapacity = updatedEvent.MaxCapacity
         };
 

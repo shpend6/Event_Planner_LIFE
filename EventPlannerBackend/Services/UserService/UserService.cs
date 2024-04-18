@@ -44,6 +44,7 @@ public class UserService : IUserService
         {
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
+            State = newUser.State,
             Email = newUser.Email
         };
 
