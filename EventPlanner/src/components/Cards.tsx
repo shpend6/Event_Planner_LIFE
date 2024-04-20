@@ -1,5 +1,7 @@
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom'; // Import Link
 import './Cards.css'
 
 function Cards() {
@@ -16,7 +18,9 @@ function Cards() {
         <Card.Text>
           DD/MM/YY
         </Card.Text>
-        <Button className='card-button' >Go somewhere</Button>
+        <Link to="/eventpage"> {/* Use Link instead of Button */}
+              <Button className='card-button' >Go somewhere</Button>
+            </Link>
       </Card.Body> 
     </Card>
     <Card style={{ width: '18rem' , border: '1px solid purple'}}>

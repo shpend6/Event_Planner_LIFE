@@ -5,6 +5,7 @@ function Admin(){
         <div className="admin">
             <h1>Admin</h1>
         </div>
+        
     );
 }
 
