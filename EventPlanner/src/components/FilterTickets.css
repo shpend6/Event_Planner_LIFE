@@ -1,14 +1,11 @@
-.filter_tickets{
-    margin: 50px 100px;
+.filter-drop{
+    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
+    border-color: blueviolet;
+    color: antiquewhite;
+    width: 93%;
+    text-align: center;
+    margin-left: 40px;
 }
-.filter_tickets h2 {
-    border: 1px solid white;
-    border-bottom: 1px solid rgb(101, 65, 143);
-}
-.block{
-    display: block;
-}
-.dropdown{
-    display: flex;
-    justify-content: flex-start;
+.filter-drop option{
+    color: blueviolet;
 }
