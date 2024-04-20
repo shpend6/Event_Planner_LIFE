@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
+using EventPlannerBackend.Dtos;
 using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,14 @@ public class EventController : ControllerBase
     {
         _eventService = eventService;
         _attendeeService = attendeeService;
+    }
+
+    [HttpGet]
+    [Route("/api/events-summary")]
+    public async Task<IActionResult> GetEventsSummary()
+    {
+        var events = await _eventService.GetEventsSummaryAsync();
+        return Ok(events);
     }
 
     [HttpGet]
@@ -42,7 +51,8 @@ public class EventController : ControllerBase
 
     [HttpPost]
     [Authorize]
-    public async Task<IActionResult> CreateEvent([FromBody] EventDto newEvent)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto newEvent)
     {
         // We retrieve user ID from the token, and parse it into the event object
         var userId = HttpContext.User.FindFirstValue("userId");
@@ -50,13 +60,15 @@ public class EventController : ControllerBase
         var eventToCreate = new Event
         {
             UserId = int.Parse(userId),
+            Organization = newEvent.Organization,
             Title = newEvent.Title,
             Description = newEvent.Description,
             State = newEvent.State,
             Location = newEvent.Location,
             StartTime = newEvent.StartTime,
             EndTime = newEvent.EndTime,
-            MaxCapacity = newEvent.MaxCapacity
+            MaxCapacity = newEvent.MaxCapacity,
+            ImagePath = await _eventService.SaveImageAsync(newEvent.ImageFile)
         };
 
         var createdEvent = await _eventService.CreateEventAsync(eventToCreate);
@@ -66,7 +78,8 @@ public class EventController : ControllerBase
 
     [HttpPut("{id}")]
     [Authorize]
-    public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDto updatedEvent)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto updatedEvent)
     {
         var userId = HttpContext.User.FindFirstValue("userId");
         var checkEventExists = await _eventService.GetEventByIdAsync(id);
@@ -81,18 +94,7 @@ public class EventController : ControllerBase
             return Forbid();
         }
 
-        var eventToUpdate = new Event
-        {
-            Title = updatedEvent.Title,
-            Description = updatedEvent.Description,
-            State = updatedEvent.State,
-            Location = updatedEvent.Location,
-            StartTime = updatedEvent.StartTime,
-            EndTime = updatedEvent.EndTime,
-            MaxCapacity = updatedEvent.MaxCapacity
-        };
-
-        await _eventService.UpdateEventAsync(id, eventToUpdate);
+        await _eventService.UpdateEventAsync(id, updatedEvent);
 
         return NoContent();
     }

@@ -13,6 +13,9 @@ public class Event
     public int UserId { get; set; } // Needed to indicate the creator of the Event
 
     [Required]
+    public string Organization { get; set; }
+
+    [Required]
     public string Title { get; set; }
 
     [StringLength(500)]
@@ -30,7 +33,11 @@ public class Event
     [Required]
     public DateTime EndTime { get; set; }
 
+    [Required]
     public int MaxCapacity { get; set; }
+
+    [Required]
+    public string ImagePath { get; set; }
 
     // Navigation properties
     public User User { get; set; }

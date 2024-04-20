@@ -14,6 +14,18 @@ public class EventService : IEventService
         _dbContext = dbContext;
     }
 
+    public async Task<IEnumerable<GetEventsSummaryDto>> GetEventsSummaryAsync()
+    {
+        return await _dbContext.Events.Select(e => new GetEventsSummaryDto
+        {
+            ImagePath = e.ImagePath,
+            Organization = e.Organization,
+            Title = e.Title,
+            StartTime = e.StartTime
+        })
+        .ToListAsync();
+    }
+
     public async Task<IEnumerable<Event>> GetAllEventsAsync()
     {
         return await _dbContext.Events.ToListAsync();
@@ -41,7 +53,7 @@ public class EventService : IEventService
         return newEvent;
     }
 
-    public async Task UpdateEventAsync(int id, Event updatedEvent)
+    public async Task UpdateEventAsync(int id, UpdateEventDto updatedEvent)
     {
         var eventToUpdate = await _dbContext.Events.FindAsync(id);
 
@@ -57,13 +69,14 @@ public class EventService : IEventService
                 throw new Exception("An overlapping event is already scheduled at this location for this time.");
             }
 
-            eventToUpdate.Title = updatedEvent.Title;
-            eventToUpdate.Description = updatedEvent.Description;
-            eventToUpdate.State = updatedEvent.State;
-            eventToUpdate.Location = updatedEvent.Location;
-            eventToUpdate.StartTime = updatedEvent.StartTime;
-            eventToUpdate.EndTime = updatedEvent.EndTime;
-            eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity;
+            eventToUpdate.Organization = updatedEvent.Organization ?? eventToUpdate.Organization;
+            eventToUpdate.Title = updatedEvent.Title ?? eventToUpdate.Title;
+            eventToUpdate.Description = updatedEvent.Description ?? eventToUpdate.Description;
+            eventToUpdate.State = updatedEvent.State ?? eventToUpdate.State;
+            eventToUpdate.Location = updatedEvent.Location ?? eventToUpdate.Location;
+            eventToUpdate.StartTime = updatedEvent.StartTime ?? eventToUpdate.StartTime;
+            eventToUpdate.EndTime = updatedEvent.EndTime ?? eventToUpdate.EndTime;
+            eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity ?? eventToUpdate.MaxCapacity;
 
             await _dbContext.SaveChangesAsync();
         }
@@ -93,5 +106,25 @@ public class EventService : IEventService
                 JoinedAt = a.JoinedAt
             })
             .ToListAsync();
+    }
+
+    public async Task<string> SaveImageAsync(IFormFile imageFile)
+    {
+        if (imageFile == null || imageFile.Length == 0)
+            return null;
+
+        var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
+        if (!Directory.Exists(uploadsFolderPath))
+            Directory.CreateDirectory(uploadsFolderPath);
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+        var filePath = Path.Combine(uploadsFolderPath, fileName);
+
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            await imageFile.CopyToAsync(fileStream);
+        }
+
+        return filePath;
     }
 }
