@@ -23,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/contact" element={<Contact />} /> {/* Add route for EventPage */}
         <Route path="/login" element={<Login/>} /> {/* Add route for EventPage */}
         <Route path="/signup" element={<Signup />} /> {/* Add route for EventPage */}
+        <Route path="/eventdetails" element={<EventPage />} /> {/* Add route for EventPage */}
       </Routes>
       <EventFooter />
     </Router>

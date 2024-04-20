@@ -12,13 +12,13 @@ function Cards() {
         </div>
         <div className='card-container'>
         <Card style={{ width: '18rem', border: '1px solid rgb(110, 29, 110)'}} >
-      <Card.Img variant="top" src="https://www.rave-travel.com/images/event/2687.jpg" />
+      <Card.Img variant="top" src="https://www.rave-travel.com/images/event/2701.jpg" />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>Card Title Test </Card.Title>
         <Card.Text>
           DD/MM/YY
         </Card.Text>
-        <Link to="/eventpage"> {/* Use Link instead of Button */}
+        <Link to="/eventdetails"> {/* Use Link instead of Button */}
               <Button className='card-button' >Go somewhere</Button>
             </Link>
       </Card.Body> 
