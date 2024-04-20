@@ -16,11 +16,14 @@ public class User
     public string LastName { get; set; }
 
     [Required]
+    public string State { get; set; }
+
+    [Required]
     [EmailAddress]
     public string Email { get; set; }
 
     [Required]
-    public string PasswordHash { get; set; } // We should store only the hash (have to check how to hash passwords)
+    public string PasswordHash { get; set; }
 
     // Navigation properties
     public ICollection<Event> CreatedEvents { get; set; } // Collection of all events this user has created

@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/EventPlannerBackend/Migrations/20240415024419_Migrations.Designer.cs
+/EventPlannerBackend/Migrations/20240415024419_Migrations.cs
+/EventPlannerBackend/Migrations/20240415024419_Migrations.cs
+/EventPlannerBackend/Migrations/20240415024419_Migrations.Designer.cs
