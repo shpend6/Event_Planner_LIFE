@@ -1,6 +1,8 @@
 import React from "react";
 import useSWR from "swr";
 import axios from "axios";
+import ControlledCarousel from "../components/Slider";
+import Body from "../components/Body";
 
 interface User {
   id: number;
@@ -25,6 +27,8 @@ const UserList: React.FC = () => {
 
   return (
     <div>
+      <ControlledCarousel/>
+      <Body/>
       <h1>User List</h1>
       <ul>
         {users.map((user) => (
