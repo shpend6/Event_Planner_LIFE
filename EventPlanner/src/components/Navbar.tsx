@@ -11,8 +11,10 @@ function EventNavbar() {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/admin">About</Nav.Link> {/* Change to /admin for Admin page */}
-            <Nav.Link href="/contact">Contact</Nav.Link> {/* Assuming you have a /contact route */}
+            <Nav.Link href="/about">About Us</Nav.Link> {/* Change to /about for About page */}
+            <Nav.Link href="/contact">Contact Us</Nav.Link> {/* Assuming you have a /contact route */}
+            <Nav.Link href="/login">Log In</Nav.Link> {/* Change to /about for About page */}
+            <Nav.Link href="/signup"> Sign up</Nav.Link> {/* Assuming you have a /contact route */}
           </Nav>
         </Navbar.Collapse>
       </Container>

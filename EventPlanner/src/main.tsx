@@ -6,20 +6,23 @@ import "./index.css";
 import EventNavbar from './components/Navbar.tsx'
 import "./components/Navbar.css"
 import EventFooter from './components/Footer.tsx'
-import "./components/Footer.css"
-import './components/Slider.css'
-import AdminComponent from './pages/AdminPage'; // Import your Admin component
+import AboutComponent from './pages/AboutUs.tsx'; // Import your About component
 import HomeComponent from './pages/HomePage.tsx'
-
+import EventPage from './pages/EventPage.tsx'; // Import EventPage
+import Contact from "./pages/ContactUs.tsx";
+import Login from "./pages/LoginPage.tsx";
+import Signup from './pages/Signup'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <EventNavbar/>
     <Router>
-      <EventNavbar/>
       <Routes>
         <Route path="/" element={<HomeComponent />} />
-        <Route path="/admin/*" element={<AdminComponent />} />
-        {/* The /admin/* route will match any route starting with /admin */}
+        <Route path="/about*" element={<AboutComponent />} />
+        <Route path="/contact" element={<Contact />} /> {/* Add route for EventPage */}
+        <Route path="/login" element={<Login/>} /> {/* Add route for EventPage */}
+        <Route path="/signup" element={<Signup />} /> {/* Add route for EventPage */}
       </Routes>
       <EventFooter />
     </Router>

@@ -4,6 +4,7 @@ import axios from "axios";
 import ControlledCarousel from "../components/Slider";
 import Body from "../components/Body";
 
+
 interface User {
   id: number;
   firstName: string;
@@ -27,6 +28,7 @@ const UserList: React.FC = () => {
 
   return (
     <div>
+      <h1>HomePage</h1>
       <ControlledCarousel/>
       <Body/>
       <h1>User List</h1>
