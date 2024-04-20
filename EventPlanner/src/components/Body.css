@@ -1,0 +1,14 @@
+:root{
+    --darkshade: #2d2d32;
+}
+Body{
+    background-color: var(--darkshade);
+    color: white;
+}
+.card{
+    margin: 50px;
+    background-color: var(--darkshade);
+    color: white;
+    display: flex;
+    border: none;
+}
