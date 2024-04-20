@@ -1,7 +1,9 @@
 ﻿namespace EventPlanner.Dtos;
 
-public class EventDto
+public class CreateEventDto
 {
+    public string Organization { get; set; }
+
     public string Title { get; set; }
 
     public string Description { get; set; }
@@ -16,4 +18,5 @@ public class EventDto
 
     public int MaxCapacity { get; set; }
 
+    public IFormFile ImageFile { get; set; }
 }
