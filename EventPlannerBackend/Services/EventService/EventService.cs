@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
+using EventPlannerBackend.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Server.Services.EventService;
@@ -25,12 +26,13 @@ public class EventService : IEventService
 
     public async Task<Event> CreateEventAsync(Event newEvent)
     {
-        // Check if any existing event is scheduled at the same time
-        bool existingEvent = await _dbContext.Events.AnyAsync(e => e.ScheduledTime == newEvent.ScheduledTime);
+        bool existingEvent = await _dbContext.Events.AnyAsync(e => e.Location == newEvent.Location 
+            && e.EndTime > newEvent.StartTime
+            && e.StartTime < newEvent.EndTime);
 
         if (existingEvent)
         {
-            throw new Exception("An event is already scheduled for this time.");
+            throw new Exception("An event is already scheduled for this time at this location.");
         }
 
         _dbContext.Events.Add(newEvent);
@@ -42,21 +44,25 @@ public class EventService : IEventService
     public async Task UpdateEventAsync(int id, Event updatedEvent)
     {
         var eventToUpdate = await _dbContext.Events.FindAsync(id);
+
         if (eventToUpdate != null)
         {
-            // Check if another event (except for this one) is scheduled at the same time
             bool conflictExists = await _dbContext.Events.AnyAsync(e => e.Id != id 
-                && e.ScheduledTime == updatedEvent.ScheduledTime);
+                && e.Location == updatedEvent.Location
+                && e.EndTime > updatedEvent.StartTime
+                && e.StartTime < updatedEvent.EndTime);
 
             if (conflictExists)
             {
-                throw new Exception("An event is already scheduled for this time.");
+                throw new Exception("An overlapping event is already scheduled at this location for this time.");
             }
 
             eventToUpdate.Title = updatedEvent.Title;
             eventToUpdate.Description = updatedEvent.Description;
+            eventToUpdate.State = updatedEvent.State;
             eventToUpdate.Location = updatedEvent.Location;
-            eventToUpdate.ScheduledTime = updatedEvent.ScheduledTime;
+            eventToUpdate.StartTime = updatedEvent.StartTime;
+            eventToUpdate.EndTime = updatedEvent.EndTime;
             eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity;
 
             await _dbContext.SaveChangesAsync();
@@ -72,5 +78,20 @@ public class EventService : IEventService
             _dbContext.Events.Remove(eventToDelete);
             await _dbContext.SaveChangesAsync();
         }
+    }
+
+    public async Task<List<AttendeeDto>> GetAttendeesByEventIdAsync(int id)
+    {
+        return await _dbContext.Attendees
+            .Where(a => a.EventId == id)
+            .Select(a => new AttendeeDto
+            {
+                UserId = a.UserId,
+                FirstName = a.User.FirstName,
+                LastName = a.User.LastName,
+                Email = a.User.Email,
+                JoinedAt = a.JoinedAt
+            })
+            .ToListAsync();
     }
 }

@@ -19,10 +19,16 @@ public class Event
     public string Description { get; set; }
 
     [Required]
+    public string State { get; set; }
+
+    [Required]
     public string Location { get; set; }
 
     [Required]
-    public DateTime ScheduledTime { get; set; }
+    public DateTime StartTime { get; set; }
+
+    [Required]
+    public DateTime EndTime { get; set; }
 
     public int MaxCapacity { get; set; }
 

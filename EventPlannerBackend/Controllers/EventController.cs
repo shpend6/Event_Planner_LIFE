@@ -1,7 +1,10 @@
 ﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
+using EventPlannerBackend.Services.AttendeeService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EventPlanner.Controllers;
 
@@ -10,10 +13,12 @@ namespace EventPlanner.Controllers;
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
+    private readonly IAttendeeService _attendeeService;
 
-    public EventController(IEventService eventService)
+    public EventController(IEventService eventService, IAttendeeService attendeeService)
     {
         _eventService = eventService;
+        _attendeeService = attendeeService;
     }
 
     [HttpGet]
@@ -36,15 +41,21 @@ public class EventController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateEvent([FromBody] EventDto newEvent)
     {
+        // We retrieve user ID from the token, and parse it into the event object
+        var userId = HttpContext.User.FindFirstValue("userId");
+
         var eventToCreate = new Event
         {
-            UserId = newEvent.UserId, // Replace with actual user identity later (After completing token authentication)
+            UserId = int.Parse(userId),
             Title = newEvent.Title,
             Description = newEvent.Description,
+            State = newEvent.State,
             Location = newEvent.Location,
-            ScheduledTime = newEvent.ScheduledTime,
+            StartTime = newEvent.StartTime,
+            EndTime = newEvent.EndTime,
             MaxCapacity = newEvent.MaxCapacity
         };
 
@@ -54,20 +65,30 @@ public class EventController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDto updatedEvent)
     {
-        var eventItem = await _eventService.GetEventByIdAsync(id);
-        if (eventItem == null)
+        var userId = HttpContext.User.FindFirstValue("userId");
+        var checkEventExists = await _eventService.GetEventByIdAsync(id);
+
+        if (checkEventExists == null)
         {
             return NotFound();
+        }
+
+        if (checkEventExists.UserId != int.Parse(userId))
+        {
+            return Forbid();
         }
 
         var eventToUpdate = new Event
         {
             Title = updatedEvent.Title,
             Description = updatedEvent.Description,
+            State = updatedEvent.State,
             Location = updatedEvent.Location,
-            ScheduledTime = updatedEvent.ScheduledTime,
+            StartTime = updatedEvent.StartTime,
+            EndTime = updatedEvent.EndTime,
             MaxCapacity = updatedEvent.MaxCapacity
         };
 
@@ -77,15 +98,30 @@ public class EventController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> DeleteEvent(int id)
     {
+        var userId = HttpContext.User.FindFirstValue("userId");
         var eventToDelete = await _eventService.GetEventByIdAsync(id);
+
         if (eventToDelete == null)
         {
             return NotFound();
         }
 
+        if (eventToDelete.UserId != int.Parse(userId))
+        {
+            return Forbid();
+        }
+
         await _eventService.DeleteEventAsync(eventToDelete.Id);
         return NoContent();
+    }
+
+    [HttpGet("{id}/attendees")]
+    public async Task<IActionResult> GetEventAttendees(int id)
+    {
+        var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
+        return Ok(attendees);
     }
 }

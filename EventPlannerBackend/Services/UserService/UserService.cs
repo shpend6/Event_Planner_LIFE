@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlanner.Server.Dtos;
+using EventPlannerBackend.Services.TokenService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ public class UserService : IUserService
 {
     private readonly EventPlannerDbContext _dbContext;
     private readonly PasswordHasher<User> _passwordHasher;
+    private readonly ITokenService _tokenService;
 
-    public UserService(EventPlannerDbContext dbContext)
+    public UserService(EventPlannerDbContext dbContext, ITokenService tokenService)
     {
         _dbContext = dbContext;
+        _tokenService = tokenService;
         _passwordHasher = new PasswordHasher<User>();
     }
 
@@ -41,6 +44,7 @@ public class UserService : IUserService
         {
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
+            State = newUser.State,
             Email = newUser.Email
         };
 
@@ -53,7 +57,7 @@ public class UserService : IUserService
         return userToCreate;
     }
 
-    public async Task<User> AuthenticateUserAsync(string email, string password)
+    public async Task<string> AuthenticateUserAsync(string email, string password)
     {
         var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
         if (user == null)
@@ -63,7 +67,7 @@ public class UserService : IUserService
         if (checkPassword == PasswordVerificationResult.Failed)
             return null;
 
-        return user;
+        return _tokenService.GenerateToken(user);
     }
 
     public async Task DeleteUserAsync(int id)
@@ -75,6 +79,18 @@ public class UserService : IUserService
             _dbContext.Users.Remove(userToDelete);
             await _dbContext.SaveChangesAsync();
         }
+    }
+
+    public async Task<List<Event>> GetUserCreatedEventsAsync(int id)
+    {
+        var eventsCreated = await _dbContext.Events.Where(e => e.UserId == id).ToListAsync();
+        return eventsCreated;
+    }
+
+    public async Task<List<Event>> GetUserAttendingEventsAsync(int id)
+    {
+        var eventsAttending = await _dbContext.Attendees.Where(a => a.UserId == id).Select(a => a.Event).ToListAsync();
+        return eventsAttending;
     }
 
     // Implement function in UserService to update user info
