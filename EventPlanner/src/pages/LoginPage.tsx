@@ -21,14 +21,11 @@ export const LoginForm = () => {
                 email,
                 password,
             });
-
-            // Assuming the response is JSON data
             const data = response.data;
 
             if (response.status === 200) {
                 // Authentication successful
-                // history.push('/main'); // Redirect to the homepage
-                console.log('jhskashakjksj')
+                 console.log()
             } else {
                 // Authentication failed
                 setError(data.message || 'Login failed');
@@ -77,7 +74,7 @@ export const LoginForm = () => {
 
                 {error && <div className="text-danger mb-3">{error}</div>}
 
-                <Button variant="primary" type="submit" disabled={loading} className="py-2 login-btn">
+                <Button variant="secondary" type="submit" disabled={loading} className="py-2 login-btn">
                     {loading ? <Spinner animation="border" size="sm" /> : 'Log In'}
                 </Button>
             </Form>
@@ -86,4 +83,3 @@ export const LoginForm = () => {
 };
 
 export default LoginForm;
-//vanesa
