@@ -1,0 +1,31 @@
+.about-img{
+    width: 100%;
+    display:flex ;
+    flex-wrap: wrap
+}
+.Img{
+    width: 100%;
+    height: 1000px;
+    opacity: 0.4;
+}
+.ImgOverlay{
+    text-align: center;
+}
+.about{
+    display: flex;
+    flex-wrap: wrap;
+}
+.about-card{
+    width: 100%;
+}
+h1, h6, .about-card, h4{
+    text-align: center;
+}
+.about-form{
+    display: flex;
+    padding: 40px;
+}
+.cards-profile{
+    display: flex;
+    flex-wrap: wrap;
+}

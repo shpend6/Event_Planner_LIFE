@@ -1,0 +1,28 @@
+.details{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 30px;
+    padding: 20px;
+}
+.description{
+    width: 400px;
+}
+.reservation{
+    border: 1px solid blueviolet;
+    border-radius: 10px;
+    color: aliceblue;
+    width: auto;
+    padding: 20px;
+}
+.reservation button{
+    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-weight: 600;
+    color: aliceblue;
+}
+.button-div{
+    text-align: center;
+}

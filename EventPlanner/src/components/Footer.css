@@ -1,9 +1,17 @@
 .section_padding{
+<<<<<<< HEAD
     padding: 2rem 2rem;
 }
 
 .footer{
     background-color: #222229 !important;  /*2d2d32*/
+=======
+    padding: 4rem 4rem;
+}
+
+.footer{
+    background-color: #212124 !important;  /*2d2d32*/
+>>>>>>> Besarta
     margin-bottom: 0px;
 }
 
@@ -20,7 +28,11 @@
     flex-wrap: wrap;
     width: 100%;
     text-align: left;
+<<<<<<< HEAD
     margin-bottom: 1rem;
+=======
+    margin-bottom: 2rem;
+>>>>>>> Besarta
 }
 
 .sb_footer-links_div{
@@ -81,7 +93,11 @@ a{
 }
 
 hr{
+<<<<<<< HEAD
     color: rgb(136, 45, 128) !important;
+=======
+    color: white !important;
+>>>>>>> Besarta
     width: 100%;
 }
 .sb_footer_copyright{

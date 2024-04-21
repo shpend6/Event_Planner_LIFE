@@ -17,4 +17,8 @@ const TestingPage: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 export default TestingPage;
+=======
+export default TestingPage;
+>>>>>>> Besarta

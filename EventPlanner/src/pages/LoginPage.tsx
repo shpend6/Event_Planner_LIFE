@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
@@ -86,3 +87,14 @@ export const LoginForm = () => {
 };
 
 export default LoginForm;
+=======
+//vanesa
+function Login(){
+    return(
+        <div>
+            <h1>Log in</h1>
+        </div>
+    );
+}
+export default Login
+>>>>>>> Besarta
