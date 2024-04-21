@@ -28,7 +28,6 @@ const UserList: React.FC = () => {
 
   return (
     <div>
-      <h1>HomePage</h1>
       <ControlledCarousel/>
       <Body/>
       <h1>User List</h1>

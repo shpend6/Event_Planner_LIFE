@@ -1,11 +1,11 @@
-import Cards from './Cards.tsx' 
+import Cardss from './Cards.tsx' 
 import './Body.css'
-import Filter from './FilterTickets.tsx';
+import FilterTickets from './FilterTickets.tsx';
 function Body(){
     return(
         <div className='card'>
-            <Cards></Cards>
-            <Filter></Filter>
+            <Cardss></Cardss>
+            <FilterTickets></FilterTickets>
         </div>
     );
 }

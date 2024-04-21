@@ -2,13 +2,13 @@
     --darkshade: #2d2d32;
 }
 Body{
-    background-color: var(--darkshade);
-    color: white;
+    background-color: var(--darkshade) !important;
+    color: white !important;
 }
 .card{
     margin: 50px;
-    background-color: var(--darkshade);
-    color: white;
+    background-color: var(--darkshade) !important;
+    color: white !important;
     display: flex;
     border: none;
 }

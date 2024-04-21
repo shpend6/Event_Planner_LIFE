@@ -18,14 +18,7 @@ function ControlledCarousel() {
         <img className='sliderimg' src="https://www.rave-travel.com/images/event/1_BK.jpg" alt="" />
       </Carousel.Item>
       <Carousel.Item>
-<<<<<<< HEAD
         <img className='sliderimg' src="https://www.rave-travel.com/images/event/EventImage%20(1).png" alt="" />
-=======
-        <img className='sliderimg' src="https://www.jonesday.com/-/media/files/publications/2019/05/when-coding-is-criminal/when-coding-is-criminal.jpg?rev=7daa2e80878c4c119b1b3cf1d5864271&hash=2AFE58E34713714383DC16573947705B" alt="" />
-        <Carousel.Caption>
-          <h3>Hackathon</h3>
-        </Carousel.Caption>
->>>>>>> Besarta
       </Carousel.Item>
       
     </Carousel>

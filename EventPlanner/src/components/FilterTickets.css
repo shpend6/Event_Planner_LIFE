@@ -1,33 +1,13 @@
-<<<<<<< HEAD
-/*.select-div{
-    display: flex;
-    flex-wrap: wrap;
-}
-.selectBar{
-    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
-    border-color: blueviolet;
-    color: antiquewhite;
-    width: 100%;
-    margin: 40px;
-    padding: 10px;
-    text-align: center;
-}
-option{
-    color: black;
-    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
-    border-color: blueviolet;
-    font-size: large;
-}*/
-=======
+/*TODO: fix the butoton margin and padding*/
 .filter-drop{
-    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
-    border-color: blueviolet;
-    color: antiquewhite;
-    width: 93%;
+    background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%) !important;
+    border-color: blueviolet !important;
+    color: antiquewhite !important;
+    width: 93% !important;
     text-align: center;
-    margin-left: 40px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 .filter-drop option{
-    color: blueviolet;
+    color: blueviolet !important;
 }
->>>>>>> Besarta

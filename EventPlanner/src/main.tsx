@@ -1,23 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-<<<<<<< HEAD
-// import App from "./pages/TestingPage.tsx";
 import "./index.css";
 import { SWRConfig } from "swr";
-import RegisterForm from "./pages/RegisterPage.tsx";
-import LoginForm from "./pages/LoginPage.tsx";
-// import LoginForm from "./pages/LoginPage.tsx";
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <SWRConfig value={{ fetcher }}>
-      <RegisterForm />
-      <LoginForm />
-    </SWRConfig>
-=======
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter, Routes, and Route
-//import App from "./pages/TestingPage.tsx";
 import "./index.css";
 import EventNavbar from './components/Navbar.tsx'
 import "./components/Navbar.css"
@@ -28,6 +13,8 @@ import EventPage from './pages/EventPage.tsx'; // Import EventPage
 import Contact from "./pages/ContactUs.tsx";
 import Login from "./pages/LoginPage.tsx";
 import Signup from './pages/Signup'
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -43,6 +30,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </Routes>
       <EventFooter />
     </Router>
->>>>>>> Besarta
   </React.StrictMode>
 );

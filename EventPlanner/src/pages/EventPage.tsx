@@ -12,6 +12,9 @@ function EventPage(){
                 <h3>Description</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Quas at nihil, suscipit error non amet veritatis ullam eligendi laudantium cupiditate.</p>
+                <p>event details</p>
+                <p>Title</p>
+                <p>Location/state</p>
             </div>
             <br />
             <div className='reservation'>

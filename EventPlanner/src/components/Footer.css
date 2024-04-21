@@ -1,18 +1,15 @@
 .section_padding{
-<<<<<<< HEAD
-    padding: 2rem 2rem;
+    padding: 2rem 2rem !important;
 }
 
 .footer{
     background-color: #222229 !important;  /*2d2d32*/
-=======
-    padding: 4rem 4rem;
+    padding: 4rem 4rem !important;
 }
 
 .footer{
     background-color: #212124 !important;  /*2d2d32*/
->>>>>>> Besarta
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
 
 .sb_footer{
@@ -26,18 +23,15 @@
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
+    width: 100% !important;
     text-align: left;
-<<<<<<< HEAD
-    margin-bottom: 1rem;
-=======
-    margin-bottom: 2rem;
->>>>>>> Besarta
+    margin-bottom: 1rem !important;
+    margin-bottom: 2rem !important;
 }
 
 .sb_footer-links_div{
-    width: 150px;
-    margin: 1rem;
+    width: 150px !important;
+    margin: 1rem !important;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -45,8 +39,8 @@
 }
 
 a{
-  color: rgb(175,175,179);  
-  text-decoration: none;
+  color: rgb(175,175,179) !important;  
+  text-decoration: none !important;
 }
 
 .socialmedia{
@@ -55,28 +49,28 @@ a{
 }
 
 .socialmedia img{
-    width: 80%;
+    width: 80% !important;
 }
 
 .sb_footer-links_div h4{
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.9rem !important;
 }
 
 .sb_footer-links_div p{
     font-size: 12px;
     line-height: 15px;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 !important;
     cursor: pointer;
 }
 
 .sb_footer-below{
-    padding: 30px;
+    padding: 30px !important;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 0.2rem;
+    margin-top: 0.2rem !important;
 }
 
 .sb_footer-below-links{
@@ -86,19 +80,15 @@ a{
 
 .sb_footer-below-links p{
     font-size: 13px;
-    line-height: 15px;
-    margin-left: 2rem;
+    line-height: 15px !important;
+    margin-left: 2rem !important;
     color: white;
     font-weight: 600;
 }
 
 hr{
-<<<<<<< HEAD
-    color: rgb(136, 45, 128) !important;
-=======
     color: white !important;
->>>>>>> Besarta
-    width: 100%;
+    width: 100% !important;
 }
 .sb_footer_copyright{
     font-size: 12px;
