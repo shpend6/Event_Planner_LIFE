@@ -8,6 +8,7 @@ import EventNavbar from "../components/Navbar";
 //import EventForm from "../components/EventForm";
 import { Card } from "react-bootstrap"; 
 
+
 interface User {
   id: number;
   firstName: string;
@@ -30,17 +31,14 @@ const UserList: React.FC = () => {
   if (!users) return <div>Loading...</div>;
 
   return (
-    <div>
+    <>
       <EventNavbar/>
       <ControlledCarousel/>
       <Body/>
-      <EventNavbar />
-      <ControlledCarousel />
-      <Body />
       <h1>User List</h1>
       <div className="row">
         {users.map((user) => (
-          <div className="col-md-4 mb-4" key={user.id}>
+          <div key={user.id}>
             <Card>
               <Card.Body>
                 <Card.Title>{`${user.firstName} ${user.lastName}`}</Card.Title>
@@ -53,7 +51,7 @@ const UserList: React.FC = () => {
         ))}
       </div>
       <EventFooter />
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
 type EventsSummary = {
-    imagePath: string;
+    ImagePath: string;
     title: string;
     organisation: string;
     startTime: string;

@@ -28,4 +28,35 @@ h1, h6, .about-card, h4{
 .cards-profile{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
+@media screen and (max-width: 1300px) {
+    .Img{
+        height: 1000px;
+    }
+  }
+@media screen and (max-width: 1263px) {
+    .Img{
+        height: 1500px;
+    }
+  }
+@media screen and (max-width: 800px) {
+    .Img{
+        height: 1600px;
+    }
+  }
+@media screen and (max-width: 647px) {
+    .Img{
+        height: 2500px;
+    }
+  }
+@media screen and (max-width: 515px) {
+    .Img{
+        height: 2600px;
+    }
+  }
+@media screen and (max-width: 400px) {
+    .Img{
+        height: 2700px;
+    }
+  }

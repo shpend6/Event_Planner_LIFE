@@ -58,7 +58,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<HomeComponent />} />
         <Route path="/about" element={<AboutComponent />} />
         <Route path="/contact" element={<Contact />} /> 
-        <Route path="/login" element={<Login/>} /> 
+        <Route path="/login" element={<Login/>} />  
         <Route path="/signup" element={<Signup />} />
         <Route path="/events" element={<PrivateRoute element={<EventPage />} />} />
          {/* Protected route */}

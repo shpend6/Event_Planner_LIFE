@@ -21,7 +21,7 @@ const UserList: React.FC = () => {
               <strong>Title: {event.title}</strong>,{" "}
               <strong>Description:</strong> {event.description},{" "}
               <strong>Location: {event.location}</strong>,{" "}
-              <strong>Time: {event.scheduledTime}</strong>,{" "}
+              <strong>Time: {event.startTime}</strong>,{" "}
               <strong>Capacity: {event.maxCapacity}</strong>
             </li>
           ))}
