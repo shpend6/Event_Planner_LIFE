@@ -44,10 +44,23 @@ public class EventController : ControllerBase
         var eventItem = await _eventService.GetEventByIdAsync(id);
         if (eventItem == null)
         {
-            return NotFound();
+            return NotFound("No events found.");
         }
 
         return Ok(eventItem);
+    }
+
+    [HttpGet]
+    [Route("/api/search-events")]
+    public async Task<IActionResult> Search(string query)
+    {
+        var results = await _eventService.SearchEventsAsync(query);
+        if (results.Any())
+        {
+            return Ok(results);
+        }
+
+        return NotFound("No events found.");
     }
 
     [HttpPost]
@@ -87,7 +100,7 @@ public class EventController : ControllerBase
 
         if (checkEventExists == null)
         {
-            return NotFound();
+            return NotFound("No events found.");
         }
 
         if (checkEventExists.UserId != int.Parse(userId))
@@ -109,7 +122,7 @@ public class EventController : ControllerBase
 
         if (eventToDelete == null)
         {
-            return NotFound();
+            return NotFound("No events found.");
         }
 
         if (eventToDelete.UserId != int.Parse(userId))
