@@ -24,7 +24,8 @@ public class TokenService : ITokenService
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("userId", user.Id.ToString())
+            new Claim("userId", user.Id.ToString()),
+            new Claim("userRole", user.Role.ToString()) // Have to convert to string as we cannot store it as enum
         };
 
         var token = new JwtSecurityToken(

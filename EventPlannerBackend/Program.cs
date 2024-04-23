@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using EventPlannerBackend.Database;
+using EventPlanner.Models;
+using Microsoft.AspNetCore.Identity;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +31,7 @@ builder.Services.AddDbContext<EventPlannerDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("EventPlannerDb")));
 
 // Add services to the container.
+builder.Services.AddScoped<PasswordHasher<User>>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -87,11 +91,23 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Token:Issuer"],
         ValidAudience = builder.Configuration["Token:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Token:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Token:Key"])),
+        RoleClaimType = "userRole"
     };
 });
 
 var app = builder.Build();
+
+// Create a service scope, initialize the database, and create an admin user with hashed password
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<EventPlannerDbContext>();
+
+    var passwordHasher = services.GetRequiredService<PasswordHasher<User>>();
+
+    AddAdminInitializer.CreateAdminUser(dbContext, passwordHasher);
+}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
