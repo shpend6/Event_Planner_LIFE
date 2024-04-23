@@ -78,6 +78,11 @@ public class EventService : IEventService
             eventToUpdate.EndTime = updatedEvent.EndTime ?? eventToUpdate.EndTime;
             eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity ?? eventToUpdate.MaxCapacity;
 
+            if (updatedEvent.ImageFile != null)
+            {
+                eventToUpdate.ImagePath = await SaveImageAsync(updatedEvent.ImageFile);
+            }
+
             await _dbContext.SaveChangesAsync();
         }
     }
