@@ -43,13 +43,8 @@ public class Event
     [Required]
     public int CategoryId { get; set; }
 
-
-
-
     // Navigation properties
-
     public User User { get; set; }
-
     public Category Category { get; set; }
     public ICollection<Attendee> Attendees { get; set; } // Collection of all the users that joined (will attend) the event
 }

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EventPlannerBackend.Migrations
 {
     [DbContext(typeof(EventPlannerDbContext))]
-    [Migration("20240423074242_AddUserRole")]
-    partial class AddUserRole
+    [Migration("20240423194229_FixDatabase")]
+    partial class FixDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace EventPlannerBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -96,6 +99,8 @@ namespace EventPlannerBackend.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -138,6 +143,23 @@ namespace EventPlannerBackend.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("EventPlannerBackend.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("EventPlanner.Models.Attendee", b =>
                 {
                     b.HasOne("EventPlanner.Models.Event", "Event")
@@ -159,11 +181,19 @@ namespace EventPlannerBackend.Migrations
 
             modelBuilder.Entity("EventPlanner.Models.Event", b =>
                 {
+                    b.HasOne("EventPlannerBackend.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("EventPlanner.Models.User", "User")
                         .WithMany("CreatedEvents")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });

@@ -1,8 +1,14 @@
-﻿namespace EventPlannerBackend.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EventPlannerBackend.Models;
+
+[Table("Categories")]
+public class Category
 {
-    public class Category
-    {
-        public int Id { get; set; }
-        public string CategoryName { get; set; } // Add this property for the category name
-    }
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    public string Name { get; set; }
 }

@@ -149,7 +149,7 @@ namespace EventPlannerBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -1,5 +1,4 @@
 ﻿using EventPlanner.Database;
-using EventPlannerBackend.Dtos;
 using EventPlannerBackend.Models;
 using Microsoft.EntityFrameworkCore;
 

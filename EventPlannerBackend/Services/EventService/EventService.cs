@@ -148,7 +148,7 @@ public class EventService : IEventService
     {
         var eventsByCategory = await _dbContext.Events
             .Include(e => e.Category)
-            .Where(e => e.Category.CategoryName == categoryName)
+            .Where(e => e.Category.Name == categoryName)
             .ToListAsync();
 
         if (eventsByCategory == null)

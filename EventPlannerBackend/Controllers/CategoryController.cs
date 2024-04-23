@@ -25,12 +25,11 @@ namespace EventPlannerBackend.Controllers
         }
 
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> AddCategory([FromForm] AddCategoryDto newCategory)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryDto newCategory)
         {
             var categoryToCreate = new Category
             {
-                CategoryName = newCategory.CategoryName
+                Name = newCategory.Name
             };
 
              var createdCategory = await _categoryService.AddCategoryAsync(categoryToCreate);
