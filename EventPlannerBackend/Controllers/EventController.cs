@@ -2,6 +2,7 @@
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
 using EventPlannerBackend.Dtos;
+using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +51,7 @@ public class EventController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.Admin))]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto newEvent)
     {
@@ -77,7 +78,7 @@ public class EventController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.Admin))]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto updatedEvent)
     {
@@ -100,7 +101,7 @@ public class EventController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.Admin))]
     public async Task<IActionResult> DeleteEvent(int id)
     {
         var userId = HttpContext.User.FindFirstValue("userId");

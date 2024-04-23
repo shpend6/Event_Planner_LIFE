@@ -1,4 +1,5 @@
-﻿using EventPlannerBackend.Services.AttendeeService;
+﻿using EventPlannerBackend.Models.Enums;
+using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -17,7 +18,7 @@ public class AttendeeController : ControllerBase
     }
 
     [HttpPost("events/{id}/join")]
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.User))]
     public async Task<IActionResult> JoinEvent(int id)
     {
         var userId = int.Parse(HttpContext.User.FindFirstValue("userId"));
@@ -31,7 +32,7 @@ public class AttendeeController : ControllerBase
     }
 
     [HttpPost("events/{id}/cancel")]
-    [Authorize]
+    [Authorize(Roles = nameof(UserRole.User))]
     public async Task<IActionResult> CancelAttendance(int id)
     {
         var userId = int.Parse(HttpContext.User.FindFirstValue("userId"));

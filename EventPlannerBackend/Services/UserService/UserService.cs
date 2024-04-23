@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlanner.Server.Dtos;
+using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.TokenService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,7 @@ public class UserService : IUserService
 
         var userToCreate = new User
         {
+            Role = UserRole.User,
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
             State = newUser.State,
