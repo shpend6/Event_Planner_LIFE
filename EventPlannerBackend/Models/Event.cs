@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EventPlannerBackend.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventPlanner.Models;
@@ -39,7 +40,11 @@ public class Event
     [Required]
     public string ImagePath { get; set; }
 
+    [Required]
+    public int CategoryId { get; set; }
+
     // Navigation properties
     public User User { get; set; }
+    public Category Category { get; set; }
     public ICollection<Attendee> Attendees { get; set; } // Collection of all the users that joined (will attend) the event
 }

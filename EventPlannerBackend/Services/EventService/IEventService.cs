@@ -14,4 +14,5 @@ public interface IEventService
     Task DeleteEventAsync(int id);
     Task<List<AttendeeDto>> GetAttendeesByEventIdAsync(int id);
     Task<string> SaveImageAsync(IFormFile imageFile);
+    Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName);
 }
