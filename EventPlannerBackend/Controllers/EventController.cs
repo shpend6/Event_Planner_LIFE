@@ -50,6 +50,19 @@ public class EventController : ControllerBase
         return Ok(eventItem);
     }
 
+    [HttpGet]
+    [Route("/api/search-events")]
+    public async Task<IActionResult> Search(string query)
+    {
+        var results = await _eventService.SearchEventsAsync(query);
+        if (results.Any())
+        {
+            return Ok(results);
+        }
+
+        return NotFound("No events found.");
+    }
+
     [HttpPost]
     [Authorize(Roles = nameof(UserRole.Admin))]
     [Consumes("multipart/form-data")]
