@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EventPlannerBackend.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventPlanner.Models;
@@ -8,6 +9,8 @@ public class User
 {
     [Key]
     public int Id { get; set; }
+
+    public UserRole Role { get; set; }
 
     [Required]
     public string FirstName { get; set; }

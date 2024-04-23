@@ -6,13 +6,12 @@
     padding: 20px;
 }
 .description{
-    width: 400px;
+    /*width: 400px;*/
 }
 .reservation{
     border: 1px solid blueviolet;
     border-radius: 10px;
     color: aliceblue;
-    width: auto;
     padding: 20px;
 }
 .reservation button{

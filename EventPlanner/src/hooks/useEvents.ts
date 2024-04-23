@@ -4,9 +4,13 @@ type Events = {
   id: number;
   userId: number;
   title: string;
+  organization: string;
+  imagePath: string;
   description: string;
+  state: string;
   location: string;
-  scheduledTime: string;
+  startTime: string;
+  endTime: string;
   maxCapacity: number;
 }[];
 
