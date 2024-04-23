@@ -36,6 +36,17 @@ public class EventService : IEventService
         return await _dbContext.Events.FindAsync(id);
     }
 
+    public async Task<List<Event>> SearchEventsAsync(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            return new List<Event>(); // Returns an empty list
+        }
+
+        var events = await _dbContext.Events.Where(e => e.Title.Contains(query) || e.Description.Contains(query)).ToListAsync();
+        return events;
+    }
+
     public async Task<Event> CreateEventAsync(Event newEvent)
     {
         bool existingEvent = await _dbContext.Events.AnyAsync(e => e.Location == newEvent.Location 
