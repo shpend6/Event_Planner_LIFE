@@ -3,7 +3,9 @@ import useSWR from "swr";
 import axios from "axios";
 import ControlledCarousel from "../components/Slider";
 import Body from "../components/Body";
-
+import EventNavbar from "../components/Navbar";
+import EventFooter from "../components/Footer";
+import { Card } from "react-bootstrap"; 
 
 interface User {
   id: number;
@@ -11,10 +13,10 @@ interface User {
   lastName: string;
   email: string;
   passwordHash: string;
-  createdEvents: unknown; // You can define the type for these properties as well if needed
+  createdEvents: unknown;
   eventsAttending: unknown;
 }
-// besarta
+
 const fetcher = (url: string) => axios.get<User[]>(url).then((res) => res.data);
 
 const UserList: React.FC = () => {
@@ -28,18 +30,25 @@ const UserList: React.FC = () => {
 
   return (
     <div>
-      <ControlledCarousel/>
-      <Body/>
+      <EventNavbar />
+      <ControlledCarousel />
+      <Body />
       <h1>User List</h1>
-      <ul>
+      <div className="row">
         {users.map((user) => (
-          <li key={user.id}>
-            <strong>First Name:</strong> {user.firstName},{" "}
-            <strong>Last Name:</strong> {user.lastName}, <strong>Email:</strong>{" "}
-            {user.email}
-          </li>
+          <div className="col-md-4 mb-4" key={user.id}>
+            <Card>
+              <Card.Body>
+                <Card.Title>{`${user.firstName} ${user.lastName}`}</Card.Title>
+                <Card.Text>
+                  <strong>Email:</strong> {user.email}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
         ))}
-      </ul>
+      </div>
+      <EventFooter />
     </div>
   );
 };
