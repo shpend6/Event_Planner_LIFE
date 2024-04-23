@@ -4,7 +4,7 @@
 .card-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     color:aliceblue !important;
 }
 .div-header-event{

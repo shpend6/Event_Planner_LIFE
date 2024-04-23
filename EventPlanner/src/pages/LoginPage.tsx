@@ -25,7 +25,7 @@ export const LoginForm = () => {
 
             if (response.status === 200) {
                 // Authentication successful
-                 console.log()
+                 console.log("Success")
             } else {
                 // Authentication failed
                 setError(data.message || 'Login failed');
