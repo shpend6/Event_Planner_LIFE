@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'; // Import Link
 import './Cards.css'
 import { useEventsSummary } from '../hooks/useEventsSummary';
 
-const UserList: React.FC = () => {
+
+const EventSummary: React.FC = () => {
   const { data, isLoading, error } = useEventsSummary();
 
   return error ? (
@@ -19,12 +20,11 @@ const UserList: React.FC = () => {
         <h2 className="header-events">Upcoming Events</h2>
       </div>
       {data.map((EventsSummary) => (
-        <>
           <div className='card-container'>
             <Card style={{ width: '18rem', border: '1px solid rgb(110, 29, 110)'}} >
-            <Card.Img variant="top" src={EventsSummary.imagePath} />
+            <Card.Img variant="top" src={EventsSummary.ImagePath} />
           <Card.Body>
-            <Card.Title>{EventsSummary.title}</Card.Title>
+            <Card.Title>Title:{EventsSummary.title}</Card.Title>
             <Card.Text>
               {EventsSummary.organisation}
             </Card.Text>
@@ -36,13 +36,13 @@ const UserList: React.FC = () => {
             </Link>
           </Card.Body>
             </Card>
-      </div>
-      </>
+          </div>
       ))}
     </div>
     )
   );
 }
+export default EventSummary;
 
 /*
 function Cardss(){

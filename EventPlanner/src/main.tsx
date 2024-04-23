@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { SWRConfig } from "swr";
+//import { SWRConfig } from "swr";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter, Routes, and Route
 import "./index.css";
 import AboutComponent from './pages/AboutUs.tsx'; 
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<HomeComponent />} />
         <Route path="/about" element={<AboutComponent />} />
         <Route path="/contact" element={<Contact />} /> 
-        <Route path="/login" element={<Login/>} /> {/* Add route for LoginIn*/}
+        <Route path="/login" element={<Login/>} />  
         <Route path="/signup" element={<Signup />} />
         <Route path="/eventdetails" element={<EventPage />} /> 
       </Routes>
