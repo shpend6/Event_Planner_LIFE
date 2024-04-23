@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using EventPlannerBackend.Services.CategoryService;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAttendeeService, AttendeeService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

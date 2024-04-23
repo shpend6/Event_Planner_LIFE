@@ -2,6 +2,7 @@
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
 using EventPlannerBackend.Dtos;
+using EventPlannerBackend.Models;
 using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -68,8 +69,9 @@ public class EventController : ControllerBase
             StartTime = newEvent.StartTime,
             EndTime = newEvent.EndTime,
             MaxCapacity = newEvent.MaxCapacity,
-            ImagePath = await _eventService.SaveImageAsync(newEvent.ImageFile)
-        };
+            ImagePath = await _eventService.SaveImageAsync(newEvent.ImageFile),
+            CategoryId = newEvent.CategoryId
+    };
 
         var createdEvent = await _eventService.CreateEventAsync(eventToCreate);
 
@@ -126,4 +128,19 @@ public class EventController : ControllerBase
         var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
         return Ok(attendees);
     }
-}
+
+
+        [HttpGet]
+        [Route("/api/events/{categoryName}")]
+        public async Task<IActionResult> GetEventsByCategory(string categoryName)
+        {
+            var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
+
+            if (eventsByCategory == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(eventsByCategory);
+        }
+    }

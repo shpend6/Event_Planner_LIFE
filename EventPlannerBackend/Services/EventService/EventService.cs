@@ -127,4 +127,22 @@ public class EventService : IEventService
 
         return filePath;
     }
+    public async Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName)
+    {
+        var eventsByCategory = await _dbContext.Events
+            .Include(e => e.Category)
+            .Where(e => e.Category.CategoryName == categoryName)
+            .ToListAsync();
+
+        if (eventsByCategory == null)
+        {
+            return null;
+        }
+
+        return new GetEventsByCategoryDto
+        {
+            CategoryName = categoryName,
+            Events = eventsByCategory
+        };
+    }
 }

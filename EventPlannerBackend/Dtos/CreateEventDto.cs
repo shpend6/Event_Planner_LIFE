@@ -19,4 +19,6 @@ public class CreateEventDto
     public int MaxCapacity { get; set; }
 
     public IFormFile ImageFile { get; set; }
+
+    public int CategoryId { get; set; }
 }
