@@ -3,31 +3,36 @@ using EventPlannerBackend.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace EventPlannerBackend.Services.CategoryService
+namespace EventPlannerBackend.Services.CategoryService;
+
+public class CategoryService : ICategoryService
 {
-    public class CategoryService : ICategoryService
+    private readonly EventPlannerDbContext _dbContext;
 
+    public CategoryService(EventPlannerDbContext dbContext)
     {
-        private readonly EventPlannerDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        public CategoryService(EventPlannerDbContext dbContext)
+    public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
+    {
+        return await _dbContext.Categories.ToListAsync();
+    }
+
+    public async Task<Category> AddCategoryAsync(Category newCategory)
+    {
+        _dbContext.Categories.Add(newCategory);
+        await _dbContext.SaveChangesAsync();
+
+        return newCategory;
+    }
+
+    public async Task DeleteCategoryAsync(Category categoryToDelete)
+    {
+        if (categoryToDelete != null)
         {
-            _dbContext = dbContext;
-        }
-
-
-        public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
-        {
-            return await _dbContext.Categories.ToListAsync();
-        }
-
-        public async Task<Category> AddCategoryAsync(Category newCategory)
-        {
-
-            _dbContext.Categories.Add(newCategory);
+            _dbContext.Categories.Remove(categoryToDelete);
             await _dbContext.SaveChangesAsync();
-
-            return newCategory;
         }
     }
 }

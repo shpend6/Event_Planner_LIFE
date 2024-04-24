@@ -1,12 +1,10 @@
-﻿using EventPlanner.Models;
-using EventPlannerBackend.Dtos;
-using EventPlannerBackend.Models;
+﻿using EventPlannerBackend.Models;
 
-namespace EventPlannerBackend.Services.CategoryService
+namespace EventPlannerBackend.Services.CategoryService;
+
+public interface ICategoryService
 {
-    public interface ICategoryService
-    {
-        Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<Category> AddCategoryAsync(Category newCategory);
-    }
+    Task<IEnumerable<Category>> GetAllCategoriesAsync();
+    Task<Category> AddCategoryAsync(Category newCategory);
+    Task DeleteCategoryAsync(Category category);
 }
