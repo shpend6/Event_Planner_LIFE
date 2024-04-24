@@ -4,7 +4,7 @@
 Body{
     background-color: var(--darkshade) !important;
     color: white !important;
-    display: flex;
+    overflow-x: hidden;
 }
 .card{
     background-color: var(--darkshade) !important;

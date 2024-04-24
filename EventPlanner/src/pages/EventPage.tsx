@@ -4,11 +4,7 @@ import useSWR from "swr";
 import axios from "axios";
 import EventNavbar from '../components/Navbar';
 import EventFooter from '../components/Footer';
-import { useEvents } from "../hooks/useEvents";
-
-interface events {
-  id: number;
-}
+import { useParams } from "react-router-dom";
 
 interface Details {
   id: number;
@@ -24,13 +20,15 @@ interface Details {
   maxCapacity: number;
 }
 
-const fetcher = (url: string) => axios.get<Details[]>(url).then((res) => res.data);
+const fetcher = (url: string) => 
+  axios.get<Details[]>(url).then((res) => res.data);
 
-const Eventss: React.FC = () => {
+const EventDetails: React.FC = () => {
   const { data: eventdetails, error } = useSWR<Details[]>(
     "https://localhost:7142/api/events",
     fetcher
   );
+  
 
   if (error) return <div>Error fetching data</div>;
   if (!eventdetails) return <div>Loading...</div>;
@@ -41,7 +39,7 @@ const Eventss: React.FC = () => {
       {eventdetails.map((Details) => (
         <div key={Details.id}>
         <div >
-        <Image src='https://www.rave-travel.com/images/event/1903x902.jpg' fluid />
+        <Image  src='/eventdetails/${Details.id}' fluid />
         </div>
       <div className="details">
         <div className='description'>
@@ -58,7 +56,7 @@ const Eventss: React.FC = () => {
           <h4>Reservation</h4> <hr />
           <p>Location: {Details.location}</p>
           <p>Start Time: {Details.startTime}</p>
-          <p>End Time: {Details.endTime}</p> {/* Assuming scheduledTime is the end time */}
+          <p>End Time: {Details.endTime}</p> 
           <div className="button-div">
             <button>Attend</button>
           </div>
@@ -72,4 +70,4 @@ const Eventss: React.FC = () => {
   );
 }
 
-export default Eventss;
+export default EventDetails;

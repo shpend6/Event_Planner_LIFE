@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom"; // Import Link
@@ -8,11 +8,11 @@ import { useEventsSummary } from "../hooks/useEventsSummary";
 const EventSummary: React.FC = () => {
   const { data, isLoading, error } = useEventsSummary();
 
-  function goToEvent() {
+  /*function goToEvent() {
     useEvent();
-  }
+  }*/
 
-  return error ? (
+ /* return error ? (
     <div> data couldnt be fetched</div>
   ) : isLoading ? (
     <div> Loading..</div>
@@ -34,8 +34,8 @@ const EventSummary: React.FC = () => {
                 <Card.Text>{EventsSummary.startTime}</Card.Text>
                 <Link to="/eventdetails">
                   {" "}
-                  {/* Use Link instead of Button */}
-                  <Button className="card-button" onClick={goToEvent()}>
+                  {/* Use Link instead of Button *//*}
+                  <Button className="card-button" /*onClick={goToEvent()}*/ /*>
                     Join
                   </Button>
                 </Link>
