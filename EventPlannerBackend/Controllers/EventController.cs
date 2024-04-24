@@ -83,7 +83,7 @@ public class EventController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = nameof(UserRole.Admin))]
+    [Authorize]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto newEvent)
     {
@@ -111,7 +111,7 @@ public class EventController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = nameof(UserRole.Admin))]
+    [Authorize]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto updatedEvent)
     {
@@ -134,7 +134,7 @@ public class EventController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = nameof(UserRole.Admin))]
+    [Authorize]
     public async Task<IActionResult> DeleteEvent(int id)
     {
         var userId = HttpContext.User.FindFirstValue("userId");
