@@ -1,18 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import "./index.css";
 import { SWRConfig } from "swr";
 import AboutComponent from './pages/AboutUs.tsx'; 
 import HomeComponent from './pages/HomePage.tsx';
-import EventPage from './pages/EventPage.tsx'; 
+import EventDetails from './pages/EventPage.tsx'; 
 import Contact from "./pages/ContactUs.tsx";
 import Login from "./pages/LoginPage.tsx";
-<<<<<<< HEAD
-import Signup from './pages/Signup.tsx'
-=======
 import Signup from './pages/Signup.tsx';
-import { jwtDecode } from "jwt-decode";  // Import jwtDecode
+/*import  jwtDecode  from "jwt-decode";
 
 
 // Function to check if the user is authenticated
@@ -53,8 +50,7 @@ const PrivateRoute: React.FC<{ element: RouteElement } & React.ComponentProps<ty
     <Navigate to="/login" replace />
   );
 };
->>>>>>> 3542790e3d51d8f2f6019c6a9086e5034f8483bc
-
+*/
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>
@@ -64,8 +60,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/contact" element={<Contact />} /> 
         <Route path="/login" element={<Login/>} />  
         <Route path="/signup" element={<Signup />} />
-        <Route path="/events" element={<PrivateRoute element={<EventPage />} />} />
-         {/* Protected route */}
+        <Route path="/eventdetails/:eventId" element={<EventDetails/>} />
       </Routes>
     </Router>
   </React.StrictMode>

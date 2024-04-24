@@ -4,6 +4,7 @@ import useSWR from "swr";
 import axios from "axios";
 import EventNavbar from '../components/Navbar';
 import EventFooter from '../components/Footer';
+import { useParams } from "react-router-dom";
 
 interface Details {
   id: number;
@@ -19,25 +20,26 @@ interface Details {
   maxCapacity: number;
 }
 
-const fetcher = (url: string) => axios.get<Details[]>(url).then((res) => res.data);
+const fetcher = (url: string) => 
+  axios.get<Details[]>(url).then((res) => res.data);
 
-const Eventss: React.FC = () => {
+const EventDetails: React.FC = () => {
   const { data: eventdetails, error } = useSWR<Details[]>(
     "https://localhost:7142/api/events",
     fetcher
   );
+  
 
   if (error) return <div>Error fetching data</div>;
   if (!eventdetails) return <div>Loading...</div>;
 
 //TO DO: fix the image import
   return (
-    <div className='event-page-details'>
-      <EventNavbar/>
+    <div className='event-page-details'><EventNavbar/>
       {eventdetails.map((Details) => (
         <div key={Details.id}>
         <div >
-        <Image src='https://www.rave-travel.com/images/event/1903x902.jpg' fluid />
+        <Image  src='/eventdetails/${Details.id}' fluid />
         </div>
       <div className="details">
         <div className='description'>
@@ -68,4 +70,4 @@ const Eventss: React.FC = () => {
   );
 }
 
-export default Eventss;
+export default EventDetails;
