@@ -10,7 +10,6 @@ import EventPage from './pages/EventPage.tsx'; // Import EventPage
 import Contact from "./pages/ContactUs.tsx";
 import Login from "./pages/LoginPage.tsx";
 import Signup from './pages/Signup.tsx'
-//import EventForm from './components/EventForm.tsx'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

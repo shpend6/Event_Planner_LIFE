@@ -4,11 +4,6 @@ import useSWR from "swr";
 import axios from "axios";
 import EventNavbar from '../components/Navbar';
 import EventFooter from '../components/Footer';
-import { useEvents } from "../hooks/useEvents";
-
-interface events {
-  id: number;
-}
 
 interface Details {
   id: number;
@@ -37,7 +32,8 @@ const Eventss: React.FC = () => {
 
 //TO DO: fix the image import
   return (
-    <div className='event-page-details'><EventNavbar/>
+    <div className='event-page-details'>
+      <EventNavbar/>
       {eventdetails.map((Details) => (
         <div key={Details.id}>
         <div >
@@ -58,7 +54,7 @@ const Eventss: React.FC = () => {
           <h4>Reservation</h4> <hr />
           <p>Location: {Details.location}</p>
           <p>Start Time: {Details.startTime}</p>
-          <p>End Time: {Details.endTime}</p> {/* Assuming scheduledTime is the end time */}
+          <p>End Time: {Details.endTime}</p> 
           <div className="button-div">
             <button>Attend</button>
           </div>

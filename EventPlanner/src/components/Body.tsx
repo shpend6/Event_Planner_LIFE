@@ -9,7 +9,7 @@ import './Cards.css'
 
 interface Events{
   id: number;
-  imagePath: 'url';
+  imagePath: string;
   title: string;
   organization: string;
   startTime: string;
@@ -21,7 +21,9 @@ const Body: React.FC = () => {
       "https://localhost:7142/api/events-summary",
       fetcher
     );
-  
+
+    console.log("events:", events);
+    
     if (error) return <div>Error fetching data</div>;
     if (!events) return <div>Loading...</div>;
   
@@ -34,7 +36,7 @@ const Body: React.FC = () => {
         {events.map((event) => (
          <div key={event.id} >
            <Card style={{ width: '18rem', border: '1px solid rgb(110, 29, 110)'}} >
-           <Card.Img variant="top" src={event.imagePath} />
+           <Card.Img variant="top" src='https://localhost:7142/api/events{events.imagePath}' alt='foto'/>
          <Card.Body>
            <Card.Title>{event.title}</Card.Title>
            <Card.Text>
@@ -55,12 +57,4 @@ const Body: React.FC = () => {
     );
   };
 
-/*function Body(){
-    return(
-        <div className='card'>
-            
-            <FilterTickets></FilterTickets>
-        </div>
-    );
-}*/
 export default Body
