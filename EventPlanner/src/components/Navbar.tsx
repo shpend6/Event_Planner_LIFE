@@ -18,7 +18,7 @@ function EventNavbar() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`https://localhost:7142/api/events?q=${searchQuery}`);
+      const response = await fetch(`https://localhost:7142/api/search-events?query=${searchQuery}`);
       
       // Check if the response is successful
       if (response.ok) {
