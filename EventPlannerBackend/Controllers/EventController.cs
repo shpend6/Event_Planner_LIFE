@@ -2,7 +2,6 @@
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
 using EventPlannerBackend.Dtos;
-using EventPlannerBackend.Models;
 using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +39,7 @@ public class EventController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetEvent(int id)
+    public async Task<IActionResult> GetEventById(int id)
     {
         var eventItem = await _eventService.GetEventByIdAsync(id);
         if (eventItem == null)
@@ -51,9 +50,28 @@ public class EventController : ControllerBase
         return Ok(eventItem);
     }
 
-    [HttpGet]
-    [Route("/api/search-events")]
-    public async Task<IActionResult> Search(string query)
+    [HttpGet("{categoryName}")]
+    public async Task<IActionResult> GetEventsByCategory(string categoryName)
+    {
+        var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
+
+        if (eventsByCategory == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(eventsByCategory);
+    }
+
+    [HttpGet("{id}/attendees")]
+    public async Task<IActionResult> GetEventAttendees(int id)
+    {
+        var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
+        return Ok(attendees);
+    }
+
+    [HttpGet("search/{query}")]
+    public async Task<IActionResult> SearchEvents(string query)
     {
         var results = await _eventService.SearchEventsAsync(query);
         if (results.Any())
@@ -135,26 +153,4 @@ public class EventController : ControllerBase
         await _eventService.DeleteEventAsync(eventToDelete.Id);
         return NoContent();
     }
-
-    [HttpGet("{id}/attendees")]
-    public async Task<IActionResult> GetEventAttendees(int id)
-    {
-        var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
-        return Ok(attendees);
-    }
-
-
-        [HttpGet]
-        [Route("/api/events/{categoryName}")]
-        public async Task<IActionResult> GetEventsByCategory(string categoryName)
-        {
-            var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
-
-            if (eventsByCategory == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(eventsByCategory);
-        }
-    }
+}

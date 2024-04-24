@@ -1,7 +1,6 @@
-﻿namespace EventPlannerBackend.Dtos
+﻿namespace EventPlannerBackend.Dtos;
+
+public class AddCategoryDto
 {
-    public class AddCategoryDto
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

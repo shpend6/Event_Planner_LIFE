@@ -10,7 +10,6 @@ export const LoginForm = () => {
      // State variables for managing form inputs, loading, errors, and authentication status
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,8 +29,10 @@ export const LoginForm = () => {
             const data = response.data;
 
             if (response.status === 200) {
-                // Authentication successful
-                 console.log()
+                console.log("Success")
+                const token = data;
+                localStorage.setItem('token', token); 
+                setIsLoggedIn(true);
             } else {
                 setError(data.message || 'Login failed');
             }
@@ -79,15 +80,7 @@ export const LoginForm = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             className="py-2 px-3 border border-secondary rounded" />
                     </Form.Group>
-
-                    <Form.Group controlId="formCheckbox" className="mb-3">
-                        <Form.Check
-                            type="checkbox"
-                            label="Remember Me"
-                            checked={rememberMe}
-                            onChange={(e) => setRememberMe(e.target.checked)} />
-                    </Form.Group>
-
+               
                     {error && <div className="text-danger mb-3">{error}</div>}
 
                     <Button
