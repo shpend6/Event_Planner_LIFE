@@ -5,3 +5,7 @@
     margin: 30px;
     padding: 20px;
 }
+.modal-body, .modal-header, .modal-footer{
+    background-color:#212124;
+    color: whitesmoke !important;
+}
