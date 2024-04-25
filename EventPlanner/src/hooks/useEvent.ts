@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-type Events = {
+type Event = {
   id: number;
   userId: number;
   title: string;
@@ -12,11 +12,16 @@ type Events = {
   startTime: string;
   endTime: string;
   maxCapacity: number;
-}[];
+};
 
-export const useEvents = () => {
-  const { data, isLoading, error } = useSWR<Events>(
-    "https://localhost:7142/api/events/id"
+export const useEvent = (id: number) => {
+  const { data, error } = useSWR<Event>(
+    `https://localhost:7142/api/events/${id}`
   );
-  return { data, isLoading, error };
+
+  return {
+    event: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
 };

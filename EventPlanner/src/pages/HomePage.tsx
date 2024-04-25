@@ -2,12 +2,10 @@ import React from "react";
 import useSWR from "swr";
 import axios from "axios";
 import ControlledCarousel from "../components/Slider";
-import Body from "../components/Body";
-import EventFooter from "../components/Footer";
+import Body from "../components/Body/Body";
+import EventFooter from "../components/Footer/Footer";
 import EventNavbar from "../components/Navbar";
-//import EventForm from "../components/EventForm";
-import { Card } from "react-bootstrap"; 
-
+import { Card } from "react-bootstrap";
 
 interface User {
   id: number;
@@ -32,9 +30,9 @@ const UserList: React.FC = () => {
 
   return (
     <>
-      <EventNavbar/>
-      <ControlledCarousel/>
-      <Body/>
+      <EventNavbar />
+      <ControlledCarousel />
+      <Body />
       <h1>User List</h1>
       <div className="row">
         {users.map((user) => (
