@@ -30,6 +30,7 @@ public class EventService : IEventService
     {
         return await _dbContext.Events.ToListAsync();
     }
+    // get
 
     public async Task<Event> GetEventByIdAsync(int id)
     {
