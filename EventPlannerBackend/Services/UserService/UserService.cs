@@ -33,13 +33,11 @@ public class UserService : IUserService
 
     public async Task<User> CreateUserAsync(SignUpDto newUser)
     {
-        // Check if the email already exists
+        // Check if the email has been already used
         var existingUser = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == newUser.Email);
 
         if (existingUser != null)
-        {
-            throw new Exception("Email already in use.");
-        }
+            throw new InvalidOperationException("Email already in use.");
 
         var userToCreate = new User
         {
@@ -63,11 +61,11 @@ public class UserService : IUserService
     {
         var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
         if (user == null)
-            return null;
+            throw new KeyNotFoundException("Email has not been used.");
 
         var checkPassword = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
         if (checkPassword == PasswordVerificationResult.Failed)
-            return null;
+            throw new UnauthorizedAccessException("Wrong password.");
 
         return _tokenService.GenerateToken(user);
     }
@@ -76,11 +74,12 @@ public class UserService : IUserService
     {
         var userToDelete = await _dbContext.Users.FindAsync(id);
 
-        if (userToDelete != null)
-        {
-            _dbContext.Users.Remove(userToDelete);
-            await _dbContext.SaveChangesAsync();
-        }
+        if (userToDelete == null)
+            throw new KeyNotFoundException("User not found.");
+
+        _dbContext.Users.Remove(userToDelete);
+        await _dbContext.SaveChangesAsync();
+
     }
 
     public async Task<List<Event>> GetUserCreatedEventsAsync(int id)

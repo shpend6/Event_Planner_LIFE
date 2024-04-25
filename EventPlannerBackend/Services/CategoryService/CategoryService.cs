@@ -21,6 +21,16 @@ public class CategoryService : ICategoryService
 
     public async Task<Category> AddCategoryAsync(Category newCategory)
     {
+        if (newCategory == null)
+            throw new ArgumentNullException(nameof(newCategory));
+
+        if (string.IsNullOrWhiteSpace(newCategory.Name))
+            throw new ArgumentException("Category name cannot be empty.");
+
+        bool categoryEists = await _dbContext.Categories.AnyAsync(c => c.Name == newCategory.Name);
+        if (categoryEists)
+            throw new InvalidOperationException("Category with the same name already exists.");
+
         _dbContext.Categories.Add(newCategory);
         await _dbContext.SaveChangesAsync();
 
@@ -29,10 +39,10 @@ public class CategoryService : ICategoryService
 
     public async Task DeleteCategoryAsync(Category categoryToDelete)
     {
-        if (categoryToDelete != null)
-        {
-            _dbContext.Categories.Remove(categoryToDelete);
-            await _dbContext.SaveChangesAsync();
-        }
+        if (categoryToDelete == null)
+            throw new ArgumentNullException(nameof(categoryToDelete));
+
+        _dbContext.Categories.Remove(categoryToDelete);
+        await _dbContext.SaveChangesAsync();
     }
 }

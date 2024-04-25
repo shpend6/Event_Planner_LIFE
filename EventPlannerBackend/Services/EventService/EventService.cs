@@ -38,15 +38,16 @@ public class EventService : IEventService
 
     public async Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName)
     {
+        var categoryExists = await _dbContext.Categories
+        .FirstOrDefaultAsync(c => c.Name == categoryName);
+
+        if (categoryExists == null)
+            throw new KeyNotFoundException("Category not found.");
+
         var eventsByCategory = await _dbContext.Events
             .Include(e => e.Category)
             .Where(e => e.Category.Name == categoryName)
             .ToListAsync();
-
-        if (eventsByCategory == null)
-        {
-            return null;
-        }
 
         return new GetEventsByCategoryDto
         {
@@ -84,14 +85,15 @@ public class EventService : IEventService
 
     public async Task<Event> CreateEventAsync(Event newEvent)
     {
-        bool existingEvent = await _dbContext.Events.AnyAsync(e => e.Location == newEvent.Location 
+        if (newEvent == null)
+            throw new ArgumentNullException(nameof(newEvent));
+
+        bool existingEvent = await _dbContext.Events.AnyAsync(e => e.Location == newEvent.Location
             && e.EndTime > newEvent.StartTime
             && e.StartTime < newEvent.EndTime);
 
         if (existingEvent)
-        {
-            throw new Exception("An event is already scheduled for this time at this location.");
-        }
+            throw new InvalidOperationException("An event is already scheduled for this time at this location.");
 
         _dbContext.Events.Add(newEvent);
         await _dbContext.SaveChangesAsync();
@@ -103,45 +105,41 @@ public class EventService : IEventService
     {
         var eventToUpdate = await _dbContext.Events.FindAsync(id);
 
-        if (eventToUpdate != null)
-        {
-            bool conflictExists = await _dbContext.Events.AnyAsync(e => e.Id != id 
-                && e.Location == updatedEvent.Location
-                && e.EndTime > updatedEvent.StartTime
-                && e.StartTime < updatedEvent.EndTime);
+        if (eventToUpdate == null)
+            throw new KeyNotFoundException("Event not found.");
 
-            if (conflictExists)
-            {
-                throw new Exception("An overlapping event is already scheduled at this location for this time.");
-            }
+        bool conflictExists = await _dbContext.Events.AnyAsync(e => e.Id != id
+            && e.Location == updatedEvent.Location
+            && e.EndTime > updatedEvent.StartTime
+            && e.StartTime < updatedEvent.EndTime);
 
-            eventToUpdate.Organization = updatedEvent.Organization ?? eventToUpdate.Organization;
-            eventToUpdate.Title = updatedEvent.Title ?? eventToUpdate.Title;
-            eventToUpdate.Description = updatedEvent.Description ?? eventToUpdate.Description;
-            eventToUpdate.State = updatedEvent.State ?? eventToUpdate.State;
-            eventToUpdate.Location = updatedEvent.Location ?? eventToUpdate.Location;
-            eventToUpdate.StartTime = updatedEvent.StartTime ?? eventToUpdate.StartTime;
-            eventToUpdate.EndTime = updatedEvent.EndTime ?? eventToUpdate.EndTime;
-            eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity ?? eventToUpdate.MaxCapacity;
+        if (conflictExists)
+            throw new InvalidOperationException("An overlapping event is already scheduled at this location for this time.");
 
-            if (updatedEvent.ImageFile != null)
-            {
-                eventToUpdate.ImagePath = await SaveImageAsync(updatedEvent.ImageFile);
-            }
+        eventToUpdate.Organization = updatedEvent.Organization ?? eventToUpdate.Organization;
+        eventToUpdate.Title = updatedEvent.Title ?? eventToUpdate.Title;
+        eventToUpdate.Description = updatedEvent.Description ?? eventToUpdate.Description;
+        eventToUpdate.State = updatedEvent.State ?? eventToUpdate.State;
+        eventToUpdate.Location = updatedEvent.Location ?? eventToUpdate.Location;
+        eventToUpdate.StartTime = updatedEvent.StartTime ?? eventToUpdate.StartTime;
+        eventToUpdate.EndTime = updatedEvent.EndTime ?? eventToUpdate.EndTime;
+        eventToUpdate.MaxCapacity = updatedEvent.MaxCapacity ?? eventToUpdate.MaxCapacity;
 
-            await _dbContext.SaveChangesAsync();
-        }
+        if (updatedEvent.ImageFile != null)
+            eventToUpdate.ImagePath = await SaveImageAsync(updatedEvent.ImageFile);
+
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteEventAsync(int id)
     {
         var eventToDelete = await _dbContext.Events.FindAsync(id);
 
-        if (eventToDelete != null)
-        {
-            _dbContext.Events.Remove(eventToDelete);
-            await _dbContext.SaveChangesAsync();
-        }
+        if (eventToDelete == null)
+            throw new KeyNotFoundException("Event not found.");
+
+        _dbContext.Events.Remove(eventToDelete);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<string> SaveImageAsync(IFormFile imageFile)
