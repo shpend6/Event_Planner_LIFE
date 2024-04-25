@@ -33,7 +33,13 @@ const UserList: React.FC = () => {
       <EventNavbar />
       <ControlledCarousel />
       <Body />
-      <h1>User List</h1>
+      <EventFooter />
+    </>
+  );
+};
+
+export default UserList;
+/*<h1>User List</h1>
       <div className="row">
         {users.map((user) => (
           <div key={user.id}>
@@ -47,10 +53,4 @@ const UserList: React.FC = () => {
             </Card>
           </div>
         ))}
-      </div>
-      <EventFooter />
-    </>
-  );
-};
-
-export default UserList;
+      </div> */

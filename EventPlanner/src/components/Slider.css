@@ -1,6 +1,6 @@
 .sliderimg{
     width: 100%;
-    height: 500px;
+    height: 600px;
 }
 @media (min-width: 576px) { 
     .sliderimg{
@@ -15,7 +15,7 @@
  }
  @media (min-width: 992px) { 
     .sliderimg{
-        height: 500px;
+        height: 600px;
     }
  }
  @media (max-width: 576px) { 

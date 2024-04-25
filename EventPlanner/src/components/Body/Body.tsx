@@ -1,7 +1,6 @@
-import CategoriesGrid from "../Categories/Categories";
-// import { getUserInfoFromToken } from "../../hooks/useUserFromToken";
-// // import "./Cards.css";
+import Categories from "../Categories/Categories";
+import './Body.css'
 
 export default function Body() {
-  return <CategoriesGrid />;
+  return <Categories />;
 }

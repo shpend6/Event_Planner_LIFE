@@ -3,8 +3,10 @@ import { useEventsFromCategory } from "../../hooks/useEventsFromCategory";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Modal } from "react-bootstrap";
 import Navbar from "../Navbar";
+import EventFooter from "../Footer/Footer";
 import { parseDate } from "../../utils/parseDate";
 import { parseHour } from "../../utils/parseHour";
+import './CategoryEvents.css'
 
 const EventsList: React.FC = () => {
   const { categoryName } = useParams<{ categoryName?: string }>();
@@ -57,8 +59,9 @@ const EventsList: React.FC = () => {
           ))}
         </div>
         <Link to="/" className="btn btn-primary">
-          Go Back to Categories
+           Go Back to Categories
         </Link>
+        <EventFooter/>
         {selectedEvent && ( // Render modal if an event is selected
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
@@ -82,6 +85,7 @@ const EventsList: React.FC = () => {
               <Button variant="primary">Join</Button>
             </Modal.Footer>
           </Modal>
+          
         )}
       </div>
     )
