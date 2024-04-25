@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getUserInfoFromToken } from "../hooks/useUserFromToken";
+import { getUserInfoFromToken } from "../utils/useUserFromToken";
 
 function EventNavbar() {
   const userInfo = getUserInfoFromToken();

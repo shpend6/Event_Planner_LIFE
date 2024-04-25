@@ -6,7 +6,9 @@ import Navbar from "../Navbar";
 import EventFooter from "../Footer/Footer";
 import { parseDate } from "../../utils/parseDate";
 import { parseHour } from "../../utils/parseHour";
-import './CategoryEvents.css'
+import "./CategoryEvents.css";
+import { useAttendee } from "../../hooks/useAttendee";
+import { getUserInfoFromToken } from "../../utils/useUserFromToken";
 
 const EventsList: React.FC = () => {
   const { categoryName } = useParams<{ categoryName?: string }>();
@@ -23,6 +25,22 @@ const EventsList: React.FC = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  // const userInfo = getUserInfoFromToken();
+  // async function useJoinEvent(eventId: number): Promise<void> {
+  //   if (userInfo === null) {
+  //     console.log("Not logged in");
+  //   } else {
+  //     try {
+  //       const { data, isLoading, error } = useAttendee(
+  //         { id: eventId },
+  //         userInfo?.userId
+  //       );
+  //       // Do something with data, isLoading, and error if needed
+  //     } catch (error) {
+  //       console.error("Error joining event:", error);
+  //     }
+  //   }
+  // }
 
   return error ? (
     <div>data couldn't be fetched</div>
@@ -59,9 +77,9 @@ const EventsList: React.FC = () => {
           ))}
         </div>
         <Link to="/" className="btn btn-primary">
-           Go Back to Categories
+          Go Back to Categories
         </Link>
-        <EventFooter/>
+        <EventFooter />
         {selectedEvent && ( // Render modal if an event is selected
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
@@ -85,7 +103,6 @@ const EventsList: React.FC = () => {
               <Button variant="primary">Join</Button>
             </Modal.Footer>
           </Modal>
-          
         )}
       </div>
     )
