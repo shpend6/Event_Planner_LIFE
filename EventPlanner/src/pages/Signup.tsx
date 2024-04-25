@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EventNavbar from '../components/Navbar';
+import EventFooter from '../components/Footer/Footer';
 
 const SignupForm = () => {
     // State variables for managing form inputs, loading, and errors
@@ -57,6 +59,8 @@ const SignupForm = () => {
     };
 
     return (
+        <>
+        <EventNavbar/>
         <Container fluid className="d-flex justify-content-center align-items-center" style={{ backgroundColor: '#2d2d32', height: '100vh', padding: '0' }}>
             <Form onSubmit={handleSubmit} className="p-4 rounded shadow border border-white" style={{ maxWidth: '800px', width: '100%', color: '#f9f9f9' }}>
                 <h2 className="text-center mb-4">
@@ -132,6 +136,8 @@ const SignupForm = () => {
                 </Button>
             </Form>
         </Container>
+        <EventFooter/>
+        </>
     );
 };
 
