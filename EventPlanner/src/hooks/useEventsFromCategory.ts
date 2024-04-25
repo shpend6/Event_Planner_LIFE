@@ -21,7 +21,7 @@ type EventsFromCategory = {
 
 export const useEventsFromCategory = (categoryName: string) => {
   const { data, isLoading, error } = useSWR<EventsFromCategory>(
-    `https://localhost:7142/api/events/get-events-by-category/${categoryName}`
+    `https://localhost:7142/api/events/by-category/${categoryName}`
   );
   return { data, isLoading, error };
 };

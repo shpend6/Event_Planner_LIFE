@@ -50,7 +50,7 @@ public class EventController : ControllerBase
         return Ok(eventItem);
     }
 
-    [HttpGet("get-events-by-category/{categoryName}")]
+    [HttpGet("by-category/{categoryName}")]
     public async Task<IActionResult> GetEventsByCategory(string categoryName)
     {
         var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
