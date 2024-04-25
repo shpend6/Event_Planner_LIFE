@@ -32,27 +32,43 @@ public class CategoryController : ControllerBase
     [Authorize(Roles = nameof(UserRole.Admin))]
     public async Task<IActionResult> AddCategory([FromBody] AddCategoryDto newCategory)
     {
-        var categoryToCreate = new Category
+        try
         {
-            Name = newCategory.Name
-        };
+            var categoryToCreate = new Category 
+            { 
+                Name = newCategory.Name 
+            };
 
-        var createdCategory = await _categoryService.AddCategoryAsync(categoryToCreate);
-        return Ok(createdCategory);
+            var createdCategory = await _categoryService.AddCategoryAsync(categoryToCreate);
+            return Ok(createdCategory);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(exception.Message);
+        }
     }
 
     [HttpDelete("{id}")]
     [Authorize(Roles = nameof(UserRole.Admin))]
     public async Task<IActionResult> DeleteCategory(int id)
     {
-        var categoryToDelete = await _dbContext.Categories.FindAsync(id);
-
-        if (categoryToDelete == null)
+        try
         {
-            return NotFound("No category found.");
-        }
+            var categoryToDelete = await _dbContext.Categories.FindAsync(id);
 
-        await _categoryService.DeleteCategoryAsync(categoryToDelete);
-        return NoContent();
+            if (categoryToDelete == null)
+                return NotFound("Category not found.");
+
+            await _categoryService.DeleteCategoryAsync(categoryToDelete);
+            return NoContent();
+        }
+        catch (ArgumentNullException exception)
+        {
+            return BadRequest(exception.Message);
+        }
     }
 }

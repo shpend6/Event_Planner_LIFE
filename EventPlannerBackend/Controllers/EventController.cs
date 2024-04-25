@@ -6,6 +6,7 @@ using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.AttendeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 
 namespace EventPlanner.Controllers;
@@ -42,10 +43,9 @@ public class EventController : ControllerBase
     public async Task<IActionResult> GetEventById(int id)
     {
         var eventItem = await _eventService.GetEventByIdAsync(id);
+
         if (eventItem == null)
-        {
-            return NotFound("No events found.");
-        }
+            return NotFound("Event not found.");
 
         return Ok(eventItem);
     }
@@ -53,14 +53,15 @@ public class EventController : ControllerBase
     [HttpGet("by-category/{categoryName}")]
     public async Task<IActionResult> GetEventsByCategory(string categoryName)
     {
-        var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
-
-        if (eventsByCategory == null)
+        try
         {
-            return NotFound();
+            var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
+            return Ok(eventsByCategory);
         }
-
-        return Ok(eventsByCategory);
+        catch (KeyNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
     }
 
     [HttpGet("{id}/attendees")]
@@ -74,12 +75,11 @@ public class EventController : ControllerBase
     public async Task<IActionResult> SearchEvents(string query)
     {
         var results = await _eventService.SearchEventsAsync(query);
-        if (results.Any())
-        {
-            return Ok(results);
-        }
 
-        return NotFound("No events found.");
+        if (results.Any())
+            return Ok(results);
+
+        return NotFound("Event not found.");
     }
 
     [HttpPost]
@@ -87,27 +87,38 @@ public class EventController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto newEvent)
     {
-        // We retrieve user ID from the token, and parse it into the event object
-        var userId = HttpContext.User.FindFirstValue("userId");
-
-        var eventToCreate = new Event
+        try
         {
-            UserId = int.Parse(userId),
-            Organization = newEvent.Organization,
-            Title = newEvent.Title,
-            Description = newEvent.Description,
-            State = newEvent.State,
-            Location = newEvent.Location,
-            StartTime = newEvent.StartTime,
-            EndTime = newEvent.EndTime,
-            MaxCapacity = newEvent.MaxCapacity,
-            ImagePath = await _eventService.SaveImageAsync(newEvent.ImageFile),
-            CategoryId = newEvent.CategoryId
-    };
+            // We retrieve user ID from the token, and parse it into the event object
+            var userId = HttpContext.User.FindFirstValue("userId");
 
-        var createdEvent = await _eventService.CreateEventAsync(eventToCreate);
+            var eventToCreate = new Event
+            {
+                UserId = int.Parse(userId),
+                Organization = newEvent.Organization,
+                Title = newEvent.Title,
+                Description = newEvent.Description,
+                State = newEvent.State,
+                Location = newEvent.Location,
+                StartTime = newEvent.StartTime,
+                EndTime = newEvent.EndTime,
+                MaxCapacity = newEvent.MaxCapacity,
+                ImagePath = await _eventService.SaveImageAsync(newEvent.ImageFile),
+                CategoryId = newEvent.CategoryId
+            };
 
-        return Ok(createdEvent);
+            var createdEvent = await _eventService.CreateEventAsync(eventToCreate);
+
+            return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.Id }, createdEvent);
+        }
+        catch (ArgumentNullException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(exception.Message);
+        }
     }
 
     [HttpPut("{id}")]
@@ -115,42 +126,51 @@ public class EventController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto updatedEvent)
     {
-        var userId = HttpContext.User.FindFirstValue("userId");
-        var checkEventExists = await _eventService.GetEventByIdAsync(id);
-
-        if (checkEventExists == null)
+        try
         {
-            return NotFound("No events found.");
-        }
+            var userId = HttpContext.User.FindFirstValue("userId");
+            var eventToUpdate = await _eventService.GetEventByIdAsync(id);
 
-        if (checkEventExists.UserId != int.Parse(userId))
+            if (eventToUpdate == null)
+                return NotFound("Event not found.");
+
+            if (eventToUpdate.UserId != int.Parse(userId))
+                return Forbid("You are not authorized to update this event.");
+
+            await _eventService.UpdateEventAsync(id, updatedEvent);
+            return NoContent();
+        }
+        catch (KeyNotFoundException exception)
         {
-            return Forbid();
+            return NotFound(exception.Message);
         }
-
-        await _eventService.UpdateEventAsync(id, updatedEvent);
-
-        return NoContent();
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(exception.Message);
+        }
     }
 
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteEvent(int id)
     {
-        var userId = HttpContext.User.FindFirstValue("userId");
-        var eventToDelete = await _eventService.GetEventByIdAsync(id);
-
-        if (eventToDelete == null)
+        try
         {
-            return NotFound("No events found.");
-        }
+            var userId = HttpContext.User.FindFirstValue("userId");
+            var eventToDelete = await _eventService.GetEventByIdAsync(id);
 
-        if (eventToDelete.UserId != int.Parse(userId))
+            if (eventToDelete == null)
+                return NotFound("Event not found.");
+
+            if (eventToDelete.UserId != int.Parse(userId))
+                return Forbid("You are not authorized to delete this event.");
+
+            await _eventService.DeleteEventAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException exception)
         {
-            return Forbid();
+            return NotFound(exception.Message);
         }
-
-        await _eventService.DeleteEventAsync(eventToDelete.Id);
-        return NoContent();
     }
 }

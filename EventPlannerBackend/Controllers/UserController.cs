@@ -27,9 +27,7 @@ public class UserController : ControllerBase
     {
         var userItem = await _userService.GetUserByIdAsync(id);
         if (userItem == null)
-        {
-            return NotFound();
-        }
+            return NotFound("User not found.");
 
         return Ok(userItem);
     }
@@ -37,20 +35,33 @@ public class UserController : ControllerBase
     [HttpPost("signup")]
     public async Task<IActionResult> SignUp([FromBody] SignUpDto newUser)
     {
-        var userToCreate = await _userService.CreateUserAsync(newUser);
-        return Ok(userToCreate);
+        try
+        {
+            var userToCreate = await _userService.CreateUserAsync(newUser);
+            return CreatedAtAction(nameof(GetUser), new { id = userToCreate.Id }, userToCreate);
+        }
+        catch (InvalidOperationException exception)
+        {
+            return BadRequest(exception.Message);
+        }
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto userLogin)
     {
-        var user = await _userService.AuthenticateUserAsync(userLogin.Email, userLogin.Password);
-        if (user == null)
+        try
         {
-            return Unauthorized();
+            var userToken = await _userService.AuthenticateUserAsync(userLogin.Email, userLogin.Password);
+            return Ok(userToken);
         }
-
-        return Ok(user);
+        catch (KeyNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
+        catch (UnauthorizedAccessException exception)
+        {
+            return Unauthorized(exception.Message);
+        }
     }
 
     [HttpDelete("{id}")]
@@ -58,9 +69,7 @@ public class UserController : ControllerBase
     {
         var userToDelete = await _userService.GetUserByIdAsync(id);
         if (userToDelete == null)
-        {
-            return NotFound();
-        }
+            return NotFound("User not found.");
 
         await _userService.DeleteUserAsync(userToDelete.Id);
         return NoContent();
@@ -72,9 +81,7 @@ public class UserController : ControllerBase
         var eventsCreated = await _userService.GetUserCreatedEventsAsync(id);
 
         if (eventsCreated == null || !eventsCreated.Any())
-        {
-            return NotFound("This user has not created any events.");
-        }
+            return NotFound("User has not created any events.");
 
         return Ok(eventsCreated);
     }
@@ -85,9 +92,7 @@ public class UserController : ControllerBase
         var eventsAttending = await _userService.GetUserAttendingEventsAsync(id);
 
         if (eventsAttending == null || !eventsAttending.Any())
-        {
-            return NotFound("This user is not attending any events.");
-        }
+            return NotFound("User is not attending any events.");
 
         return Ok(eventsAttending);
     }
