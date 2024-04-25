@@ -19,23 +19,17 @@ public class AttendeeService : IAttendeeService
 
         // Check if the event exists before joining
         if (existingEvent == null)
-        {
-            return false;
-        }
+            throw new KeyNotFoundException("Event not found.");
 
         // Check if the user trying to join is the creator of the event (they shouldn't be shown as attendees)
         if (existingEvent.UserId == userId)
-        {
-            return false;
-        }
+            throw new InvalidOperationException("Cannot join your own event.");
 
         bool isAlreadyAttending = await _dbContext.Attendees
             .AnyAsync(a => a.UserId == userId && a.EventId == eventId);
 
         if (isAlreadyAttending)
-        {
-            return false;
-        }
+            throw new InvalidOperationException("Already attending the event.");
 
         var newAttendee = new Attendee
         {
@@ -57,9 +51,7 @@ public class AttendeeService : IAttendeeService
             .FirstOrDefaultAsync(a => a.UserId == userId && a.EventId == eventId);
 
         if (existingAttendee == null)
-        {
-            return false;
-        }
+            throw new KeyNotFoundException("Attendance record not found.");
 
         _dbContext.Attendees.Remove(existingAttendee);
         await _dbContext.SaveChangesAsync();
