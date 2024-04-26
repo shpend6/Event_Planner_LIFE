@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlanner.Server.Dtos;
+using EventPlannerBackend.Dtos;
 using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.TokenService;
 using Microsoft.AspNetCore.Identity;
@@ -21,14 +22,34 @@ public class UserService : IUserService
         _passwordHasher = new PasswordHasher<User>();
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    public async Task<IEnumerable<GetUserDto>> GetAllUsersAsync()
     {
-        return await _dbContext.Users.ToListAsync();
+        return await _dbContext.Users.Select(u => new GetUserDto
+        {
+            Id = u.Id,
+            FirstName = u.FirstName,
+            LastName = u.LastName,
+            State = u.State,
+            Email = u.Email
+        })
+        .ToListAsync();
     }
 
-    public async Task<User> GetUserByIdAsync(int id)
+    public async Task<GetUserDto> GetUserByIdAsync(int id)
     {
-        return await _dbContext.Users.FindAsync(id);
+        var user = await _dbContext.Users.FindAsync(id);
+
+        if (user == null)
+            throw new KeyNotFoundException("User not found.");
+
+        return new GetUserDto
+        {
+            Id = id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            State = user.State,
+            Email = user.Email
+        };
     }
 
     public async Task<User> CreateUserAsync(SignUpDto newUser)

@@ -56,11 +56,24 @@ public class EventService : IEventService
         };
     }
 
-    public async Task<List<AttendeeDto>> GetAttendeesByEventIdAsync(int id)
+    public async Task<IEnumerable<GetEventsSummaryDto>> GetEventsByStateAsync(string state)
+    {
+        return await _dbContext.Events.Where(e => e.State == state)
+            .Select(e => new GetEventsSummaryDto
+            {
+                ImagePath = e.ImagePath,
+                Organization = e.Organization,
+                Title = e.Title,
+                StartTime = e.StartTime
+            })
+            .ToListAsync();
+    }
+
+    public async Task<List<GetAttendeeDto>> GetAttendeesByEventIdAsync(int id)
     {
         return await _dbContext.Attendees
             .Where(a => a.EventId == id)
-            .Select(a => new AttendeeDto
+            .Select(a => new GetAttendeeDto
             {
                 UserId = a.UserId,
                 FirstName = a.User.FirstName,

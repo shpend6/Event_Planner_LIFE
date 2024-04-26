@@ -64,6 +64,16 @@ public class EventController : ControllerBase
         }
     }
 
+    [HttpGet("by-state")]
+    [Authorize]
+    public async Task<IActionResult> GetEventsByState()
+    {
+        var userState = HttpContext.User.FindFirstValue("userState");
+
+        var eventsByState = await _eventService.GetEventsByStateAsync(userState);
+        return Ok(eventsByState);
+    }
+
     [HttpGet("{id}/attendees")]
     public async Task<IActionResult> GetEventAttendees(int id)
     {

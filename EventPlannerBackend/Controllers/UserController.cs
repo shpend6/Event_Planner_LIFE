@@ -1,6 +1,8 @@
-﻿using EventPlanner.Server.Dtos;
+﻿using EventPlanner.Database;
+using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Controllers;
 
@@ -8,11 +10,19 @@ namespace EventPlanner.Controllers;
 [Route("/api/users")]
 public class UserController : ControllerBase
 {
+    private readonly EventPlannerDbContext _dbContext;
     private readonly IUserService _userService;
+    private IUserService @object;
 
-    public UserController(IUserService userService)
+    public UserController(EventPlannerDbContext dbContext, IUserService userService)
     {
+        _dbContext = dbContext;
         _userService = userService;
+    }
+
+    public UserController(IUserService @object)
+    {
+        this.@object = @object;
     }
 
     [HttpGet]
@@ -25,11 +35,15 @@ public class UserController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
     {
-        var userItem = await _userService.GetUserByIdAsync(id);
-        if (userItem == null)
-            return NotFound("User not found.");
-
-        return Ok(userItem);
+        try
+        {
+            var userItem = await _userService.GetUserByIdAsync(id);
+            return Ok(userItem);
+        }
+        catch (KeyNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
     }
 
     [HttpPost("signup")]
@@ -67,12 +81,17 @@ public class UserController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        var userToDelete = await _userService.GetUserByIdAsync(id);
-        if (userToDelete == null)
-            return NotFound("User not found.");
+        try
+        {
+            var userToDelete = await _dbContext.Users.FindAsync(id);
 
-        await _userService.DeleteUserAsync(userToDelete.Id);
-        return NoContent();
+            await _userService.DeleteUserAsync(userToDelete.Id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
     }
 
     [HttpGet("{id}/events-created")]
