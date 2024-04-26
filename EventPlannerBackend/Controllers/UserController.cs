@@ -2,7 +2,6 @@
 using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanner.Controllers;
 
