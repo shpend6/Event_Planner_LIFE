@@ -1,6 +1,6 @@
 ﻿namespace EventPlannerBackend.Dtos;
 
-public class AttendeeDto
+public class GetAttendeeDto
 {
     public int UserId { get; set; }
 
