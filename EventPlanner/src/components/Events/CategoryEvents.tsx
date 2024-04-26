@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState } from "react";
 import { useEventsFromCategory } from "../../hooks/useEventsFromCategory";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Modal } from "react-bootstrap";
@@ -6,16 +7,27 @@ import Navbar from "../Navbar";
 import EventFooter from "../Footer/Footer";
 import { parseDate } from "../../utils/parseDate";
 import { parseHour } from "../../utils/parseHour";
+import joinEvent from "../../hooks/use-create-Attendee"; // Import the joinEvent hook
 import "./CategoryEvents.css";
-import { useAttendee } from "../../hooks/useAttendee";
-import { getUserInfoFromToken } from "../../utils/useUserFromToken";
 
 const EventsList: React.FC = () => {
   const { categoryName } = useParams<{ categoryName?: string }>();
   const { data, isLoading, error } = useEventsFromCategory(categoryName ?? "");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [selectedEvent, setSelectedEvent] = useState<any>(null); // State to store the selected event
-  const [showModal, setShowModal] = useState<boolean>(false); // State to manage modal visibility
+  const [responseData, setResponseData] = useState<any>(null); // State to hold response data
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (responseData) {
+      const timer = setTimeout(() => {
+        setResponseData(null); // Clear response data after 3 seconds
+      }, 1500);
+
+      return () => clearTimeout(timer); // Clear the timer if the component unmounts
+    }
+  }, [responseData]);
 
   const handleEventClick = (event: unknown) => {
     setSelectedEvent(event);
@@ -25,22 +37,24 @@ const EventsList: React.FC = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  // const userInfo = getUserInfoFromToken();
-  // async function useJoinEvent(eventId: number): Promise<void> {
-  //   if (userInfo === null) {
-  //     console.log("Not logged in");
-  //   } else {
-  //     try {
-  //       const { data, isLoading, error } = useAttendee(
-  //         { id: eventId },
-  //         userInfo?.userId
-  //       );
-  //       // Do something with data, isLoading, and error if needed
-  //     } catch (error) {
-  //       console.error("Error joining event:", error);
-  //     }
-  //   }
-  // }
+
+  const handleJoinEvent = async (eventId: string) => {
+    const bearerToken = localStorage.getItem("token");
+    console.log(bearerToken); // Get the token from localStorage
+    if (bearerToken) {
+      try {
+        const data = await joinEvent(eventId, bearerToken); // Call the joinEvent hook
+        setResponseData(data); // Log the response data
+        // Optionally, you can handle success here, e.g., display a success message
+      } catch (error: any) {
+        setResponseData("Cant join this event!");
+        // Optionally, you can handle error here, e.g., display an error message
+      }
+    } else {
+      console.log("No token found in localStorage");
+      // Optionally, you can handle not having a token here, e.g., redirect to login page
+    }
+  };
 
   return error ? (
     <div>data couldn't be fetched</div>
@@ -60,7 +74,11 @@ const EventsList: React.FC = () => {
                   border: "1px solid rgb(110, 29, 110)",
                 }}
               >
-                <Card.Img variant="top" src={event.imagePath} alt="foto" />
+                <Card.Img
+                  variant="top"
+                  src={`https://bucket-3yw4ka.s3.amazonaws.com/${event.imagePath}`}
+                  alt="foto"
+                />
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
                   <Card.Text>{event.organization}</Card.Text>
@@ -80,11 +98,16 @@ const EventsList: React.FC = () => {
           Go Back to Categories
         </Link>
         <EventFooter />
-        {selectedEvent && ( // Render modal if an event is selected
+        {selectedEvent && (
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
-              <Modal.Title>Event Details</Modal.Title>
+              <Card.Img
+                variant="top"
+                src={`https://bucket-3yw4ka.s3.amazonaws.com/${selectedEvent.imagePath}`}
+                alt="foto"
+              />
             </Modal.Header>
+
             <Modal.Body>
               <p>Title: {selectedEvent.title}</p>
               <p>Organization: {selectedEvent.organization}</p>
@@ -94,13 +117,22 @@ const EventsList: React.FC = () => {
                 {parseHour(selectedEvent.endTime)}
               </p>
               <p>Description: {selectedEvent.description}</p>
-              {/* Add more event details as needed */}
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseModal}>
                 Close
               </Button>
-              <Button variant="primary">Join</Button>
+              <Button
+                variant="primary"
+                onClick={() => handleJoinEvent(selectedEvent.id)}
+              >
+                Join
+              </Button>
+              {responseData && (
+                <div className="response-data-container">
+                  <pre>{responseData}</pre>
+                </div>
+              )}
             </Modal.Footer>
           </Modal>
         )}
