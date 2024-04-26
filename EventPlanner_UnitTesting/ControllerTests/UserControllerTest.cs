@@ -5,10 +5,8 @@ using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
 using EventPlannerBackend.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moq;
-using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
 
 namespace EventPlanner.UnitTests.Controllers
 {
@@ -21,8 +19,11 @@ namespace EventPlanner.UnitTests.Controllers
         [SetUp]
         public void SetUp()
         {
+            var options = new DbContextOptionsBuilder<EventPlannerDbContext>()
+                .UseInMemoryDatabase(databaseName: "EventPlannerTestDb")
+                .Options;
             _userServiceMock = new Mock<IUserService>();
-            _dbContextMock = new Mock<EventPlannerDbContext>();
+            _dbContextMock = new Mock<EventPlannerDbContext>(options);
             _controller = new UserController(_dbContextMock.Object, _userServiceMock.Object);
         }
 

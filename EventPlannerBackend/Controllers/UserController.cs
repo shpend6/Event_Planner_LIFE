@@ -11,18 +11,12 @@ public class UserController : ControllerBase
 {
     private readonly EventPlannerDbContext _dbContext;
     private readonly IUserService _userService;
-    private IUserService @object;
 
     public UserController(EventPlannerDbContext dbContext, IUserService userService)
     {
         _dbContext = dbContext;
         _userService = userService;
     }
-
-    /*public UserController(IUserService @object)
-    {
-        this.@object = @object;
-    }*/
 
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
