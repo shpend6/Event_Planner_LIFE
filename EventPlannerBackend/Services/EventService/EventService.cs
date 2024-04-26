@@ -1,4 +1,6 @@
-﻿using EventPlanner.Database;
+﻿using Amazon.S3;
+using Amazon.S3.Transfer;
+using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlannerBackend.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -78,18 +80,30 @@ public class EventService : IEventService
         if (imageFile == null || imageFile.Length == 0)
             return null;
 
-        var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-        if (!Directory.Exists(uploadsFolderPath))
-            Directory.CreateDirectory(uploadsFolderPath);
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .Build();
 
+        // AWS S3 bucket details
+        string bucketName = "bucket-3yw4ka";
+        //string accessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+        // string secretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+        string accessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+        string secretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+        // Create an S3 client
+        var s3Client = new AmazonS3Client(accessKeyId, secretAccessKey, Amazon.RegionEndpoint.USEast1);
+
+        // Generate a unique file name for the S3 obje
         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-        var filePath = Path.Combine(uploadsFolderPath, fileName);
 
-        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        // Upload file to S3
+        using (var fileStream = imageFile.OpenReadStream())
         {
-            await imageFile.CopyToAsync(fileStream);
+            var fileTransferUtility = new TransferUtility(s3Client);
+            await fileTransferUtility.UploadAsync(fileStream, bucketName, fileName);
         }
 
-        return filePath;
+        return fileName;
     }
 }

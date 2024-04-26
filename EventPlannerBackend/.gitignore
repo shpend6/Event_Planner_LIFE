@@ -3,6 +3,9 @@
 /bin/
 /obj/
 
+# env variables
+.env
+
 # Rider temporary files
 .idea/
 
@@ -90,3 +93,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
