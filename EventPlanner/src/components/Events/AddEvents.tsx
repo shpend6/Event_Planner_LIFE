@@ -79,7 +79,7 @@ const AddEventForm = () => {
       const response = await fetch("https://localhost:7142/api/events", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "*/*",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(eventData),

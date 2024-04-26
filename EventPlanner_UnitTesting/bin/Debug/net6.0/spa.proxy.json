@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "",
+"LaunchCommand": "",
+"WorkingDirectory": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend",
+"MaxTimeoutInSeconds": "120"
+}
+}
