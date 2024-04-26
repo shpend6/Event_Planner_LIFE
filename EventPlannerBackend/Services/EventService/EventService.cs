@@ -80,15 +80,10 @@ public class EventService : IEventService
         if (imageFile == null || imageFile.Length == 0)
             return null;
 
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json")
-        .Build();
+        DotNetEnv.Env.Load();
 
         // AWS S3 bucket details
         string bucketName = "bucket-3yw4ka";
-        //string accessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
-        // string secretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
         string accessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
         string secretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
         // Create an S3 client
