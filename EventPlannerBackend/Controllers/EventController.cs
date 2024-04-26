@@ -2,11 +2,10 @@
 using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
 using EventPlannerBackend.Dtos;
-using EventPlannerBackend.Models.Enums;
 using EventPlannerBackend.Services.AttendeeService;
+using EventPlannerBackend.Services.EventService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Security.Claims;
 
 namespace EventPlanner.Controllers;
@@ -16,11 +15,13 @@ namespace EventPlanner.Controllers;
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
+    private readonly IGetEventService _getEventService;
     private readonly IAttendeeService _attendeeService;
 
-    public EventController(IEventService eventService, IAttendeeService attendeeService)
+    public EventController(IEventService eventService, IGetEventService getEventService, IAttendeeService attendeeService)
     {
         _eventService = eventService;
+        _getEventService = getEventService;
         _attendeeService = attendeeService;
     }
 
@@ -28,21 +29,21 @@ public class EventController : ControllerBase
     [Route("/api/events-summary")]
     public async Task<IActionResult> GetEventsSummary()
     {
-        var events = await _eventService.GetEventsSummaryAsync();
+        var events = await _getEventService.GetEventsSummaryAsync();
         return Ok(events);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAllEvents()
     {
-        var events = await _eventService.GetAllEventsAsync();
+        var events = await _getEventService.GetAllEventsAsync();
         return Ok(events);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetEventById(int id)
     {
-        var eventItem = await _eventService.GetEventByIdAsync(id);
+        var eventItem = await _getEventService.GetEventByIdAsync(id);
 
         if (eventItem == null)
             return NotFound("Event not found.");
@@ -55,7 +56,7 @@ public class EventController : ControllerBase
     {
         try
         {
-            var eventsByCategory = await _eventService.GetEventsByCategoryAsync(categoryName);
+            var eventsByCategory = await _getEventService.GetEventsByCategoryAsync(categoryName);
             return Ok(eventsByCategory);
         }
         catch (KeyNotFoundException exception)
@@ -70,26 +71,40 @@ public class EventController : ControllerBase
     {
         var userState = HttpContext.User.FindFirstValue("userState");
 
-        var eventsByState = await _eventService.GetEventsByStateAsync(userState);
+        var eventsByState = await _getEventService.GetEventsByStateAsync(userState);
         return Ok(eventsByState);
     }
 
     [HttpGet("{id}/attendees")]
     public async Task<IActionResult> GetEventAttendees(int id)
     {
-        var attendees = await _eventService.GetAttendeesByEventIdAsync(id);
+        var attendees = await _getEventService.GetAttendeesByEventIdAsync(id);
         return Ok(attendees);
     }
 
     [HttpGet("search/{query}")]
     public async Task<IActionResult> SearchEvents(string query)
     {
-        var results = await _eventService.SearchEventsAsync(query);
+        var results = await _getEventService.SearchEventsAsync(query);
 
         if (results.Any())
             return Ok(results);
 
         return NotFound("Event not found.");
+    }
+
+    [HttpGet("future")]
+    public async Task<IActionResult> GetFutureEvents()
+    {
+        var events = await _getEventService.GetFutureEventsAsync();
+        return Ok(events);
+    }
+
+    [HttpGet("past")]
+    public async Task<IActionResult> GetPastEvents()
+    {
+        var events = await _getEventService.GetPastEventsAsync();
+        return Ok(events);
     }
 
     [HttpPost]
@@ -139,7 +154,7 @@ public class EventController : ControllerBase
         try
         {
             var userId = HttpContext.User.FindFirstValue("userId");
-            var eventToUpdate = await _eventService.GetEventByIdAsync(id);
+            var eventToUpdate = await _getEventService.GetEventByIdAsync(id);
 
             if (eventToUpdate == null)
                 return NotFound("Event not found.");
@@ -167,7 +182,7 @@ public class EventController : ControllerBase
         try
         {
             var userId = HttpContext.User.FindFirstValue("userId");
-            var eventToDelete = await _eventService.GetEventByIdAsync(id);
+            var eventToDelete = await _getEventService.GetEventByIdAsync(id);
 
             if (eventToDelete == null)
                 return NotFound("Event not found.");

@@ -1,16 +1,17 @@
 using EventPlanner.Database;
+using EventPlannerBackend.Database;
+using EventPlanner.Models;
 using EventPlanner.Server.Services.EventService;
 using EventPlanner.Server.Services.UserService;
+using EventPlannerBackend.Services.EventService;
 using EventPlannerBackend.Services.TokenService;
 using EventPlannerBackend.Services.AttendeeService;
+using EventPlannerBackend.Services.CategoryService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using EventPlannerBackend.Services.CategoryService;
-using EventPlannerBackend.Database;
-using EventPlanner.Models;
-using Microsoft.AspNetCore.Identity;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ builder.Services.AddDbContext<EventPlannerDbContext>(options =>
 // Add services to the container.
 builder.Services.AddScoped<PasswordHasher<User>>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IGetEventService, GetEventService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAttendeeService, AttendeeService>();

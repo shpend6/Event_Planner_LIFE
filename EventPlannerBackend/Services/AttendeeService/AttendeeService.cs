@@ -17,13 +17,15 @@ public class AttendeeService : IAttendeeService
     {
         var existingEvent = await _dbContext.Events.FindAsync(eventId);
 
-        // Check if the event exists before joining
         if (existingEvent == null)
             throw new KeyNotFoundException("Event not found.");
 
-        // Check if the user trying to join is the creator of the event (they shouldn't be shown as attendees)
         if (existingEvent.UserId == userId)
             throw new InvalidOperationException("Cannot join your own event.");
+
+        int currentAttendeesCount = await _dbContext.Attendees.CountAsync(a => a.EventId == eventId);
+        if (currentAttendeesCount >= existingEvent.MaxCapacity)
+            throw new InvalidOperationException("Event is at full capacity.");
 
         bool isAlreadyAttending = await _dbContext.Attendees
             .AnyAsync(a => a.UserId == userId && a.EventId == eventId);
