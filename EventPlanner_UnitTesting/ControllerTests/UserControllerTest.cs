@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using EventPlanner.Controllers;
+using EventPlanner.Database;
 using EventPlanner.Models;
 using EventPlanner.Server.Dtos;
 using EventPlanner.Server.Services.UserService;
@@ -9,6 +7,8 @@ using EventPlannerBackend.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Threading.Tasks;
 
 namespace EventPlanner.UnitTests.Controllers
 {
@@ -16,12 +16,14 @@ namespace EventPlanner.UnitTests.Controllers
     {
         private UserController _controller;
         private Mock<IUserService> _userServiceMock;
+        private Mock<EventPlannerDbContext> _dbContextMock;
 
         [SetUp]
         public void SetUp()
         {
             _userServiceMock = new Mock<IUserService>();
-            _controller = new UserController(_userServiceMock.Object);
+            _dbContextMock = new Mock<EventPlannerDbContext>();
+            _controller = new UserController(_dbContextMock.Object, _userServiceMock.Object);
         }
 
         [Test]
@@ -38,7 +40,7 @@ namespace EventPlanner.UnitTests.Controllers
             // Assert
             Assert.IsInstanceOf(typeof(OkObjectResult), result);
             var okResult = (OkObjectResult)result;
-            var resultUser = (GetUserDto)okResult.Value; // Update to GetUserDto
+            var resultUser = (GetUserDto)okResult.Value;
             Assert.IsNotNull(resultUser);
             Assert.AreEqual(getUserDto.Id, resultUser.Id);
             Assert.AreEqual(getUserDto.FirstName, resultUser.FirstName);
@@ -81,4 +83,3 @@ namespace EventPlanner.UnitTests.Controllers
         }
     }
 }
-

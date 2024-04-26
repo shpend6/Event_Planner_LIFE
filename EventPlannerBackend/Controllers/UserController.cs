@@ -19,10 +19,10 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    public UserController(IUserService @object)
+    /*public UserController(IUserService @object)
     {
         this.@object = @object;
-    }
+    }*/
 
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
