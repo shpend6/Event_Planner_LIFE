@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventPlanner.Controllers;
+﻿using EventPlanner.Controllers;
 using EventPlanner.Models;
-using EventPlanner.Server.Services.EventService;
 using Moq;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using EventPlannerBackend.Services.EventService;
 
 namespace EventPlanner.UnitTests.Controllers
 {
@@ -20,10 +13,10 @@ namespace EventPlanner.UnitTests.Controllers
         {
             // Arrange
             var expectedEvents = new List<Event> { new Event { Id = 1, Title = "Event 1" } };
-            var eventServiceMock = new Mock<IEventService>();
+            var eventServiceMock = new Mock<IGetEventService>();
             eventServiceMock.Setup(service => service.GetAllEventsAsync())
                             .ReturnsAsync(expectedEvents);
-            var controller = new EventController(eventServiceMock.Object, null);
+            var controller = new EventController(null, eventServiceMock.Object, null);
 
             // Act
             var result = await controller.GetAllEvents();

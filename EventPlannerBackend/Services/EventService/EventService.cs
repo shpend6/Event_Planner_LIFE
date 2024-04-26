@@ -3,7 +3,7 @@ using EventPlanner.Models;
 using EventPlannerBackend.Dtos;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventPlanner.Server.Services.EventService;
+namespace EventPlanner.Server.Services.GetEventService;
 
 public class EventService : IEventService
 {

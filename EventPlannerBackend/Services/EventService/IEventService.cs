@@ -1,7 +1,7 @@
 ﻿using EventPlanner.Models;
 using EventPlannerBackend.Dtos;
 
-namespace EventPlanner.Server.Services.EventService;
+namespace EventPlanner.Server.Services.GetEventService;
 
 public interface IEventService
 {

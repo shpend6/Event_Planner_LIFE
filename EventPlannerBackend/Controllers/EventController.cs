@@ -1,6 +1,6 @@
 ﻿using EventPlanner.Dtos;
 using EventPlanner.Models;
-using EventPlanner.Server.Services.EventService;
+using EventPlanner.Server.Services.GetEventService;
 using EventPlannerBackend.Dtos;
 using EventPlannerBackend.Services.AttendeeService;
 using EventPlannerBackend.Services.EventService;

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj": {}
+    "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\EventPlannerBackend.csproj": {
+    "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\EventPlannerBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\EventPlannerBackend.csproj",
+        "projectUniqueName": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\EventPlannerBackend.csproj",
         "projectName": "EventPlannerBackend",
-        "projectPath": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\EventPlannerBackend.csproj",
-        "packagesPath": "C:\\Users\\FastTech\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\obj\\",
+        "projectPath": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\EventPlannerBackend.csproj",
+        "packagesPath": "C:\\Users\\donatk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\FastTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donatk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -94,24 +100,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300-preview.24203.14\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj": {
+    "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj",
+        "projectUniqueName": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj",
         "projectName": "EventPlanner_UnitTesting",
-        "projectPath": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj",
-        "packagesPath": "C:\\Users\\FastTech\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlanner_UnitTesting\\obj\\",
+        "projectPath": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlanner_UnitTesting\\EventPlanner_UnitTesting.csproj",
+        "packagesPath": "C:\\Users\\donatk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlanner_UnitTesting\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\FastTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donatk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -120,14 +126,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\EventPlannerBackend.csproj": {
-                "projectPath": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend\\EventPlannerBackend.csproj"
+              "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\EventPlannerBackend.csproj": {
+                "projectPath": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend\\EventPlannerBackend.csproj"
               }
             }
           }
@@ -136,6 +143,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -183,7 +195,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300-preview.24203.14\\RuntimeIdentifierGraph.json"
         }
       }
     }

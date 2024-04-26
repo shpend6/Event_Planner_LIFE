@@ -1,7 +1,7 @@
 using EventPlanner.Database;
 using EventPlannerBackend.Database;
 using EventPlanner.Models;
-using EventPlanner.Server.Services.EventService;
+using EventPlanner.Server.Services.GetEventService;
 using EventPlanner.Server.Services.UserService;
 using EventPlannerBackend.Services.EventService;
 using EventPlannerBackend.Services.TokenService;

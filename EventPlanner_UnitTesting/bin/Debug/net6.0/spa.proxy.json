@@ -2,7 +2,7 @@
 "SpaProxyServer": {
 "ServerUrl": "",
 "LaunchCommand": "",
-"WorkingDirectory": "C:\\Users\\FastTech\\Desktop\\projekti\\Event_Planner_LIFE\\EventPlannerBackend",
+"WorkingDirectory": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend",
 "MaxTimeoutInSeconds": "120"
 }
 }

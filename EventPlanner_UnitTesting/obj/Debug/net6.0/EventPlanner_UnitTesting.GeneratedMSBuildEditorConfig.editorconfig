@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EventPlanner_UnitTesting
-build_property.ProjectDir = C:\Users\FastTech\Desktop\projekti\Event_Planner_LIFE\EventPlanner_UnitTesting\
+build_property.ProjectDir = C:\Users\donatk\Desktop\temp_project\EventPlanner_UnitTesting\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
