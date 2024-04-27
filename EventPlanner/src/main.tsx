@@ -12,6 +12,7 @@ import Signup from "./pages/Signup.tsx";
 import CategoriesGrid from "./components/Categories/Categories.tsx";
 import EventsList from "./components/Events/CategoryEvents.tsx";
 import AddEvent from "./pages/AddEventPage.tsx";
+import Profile from "./pages/ProfilePage.tsx";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<CategoriesGrid />} />
           <Route path="/events/:categoryName" element={<EventsList />} />
           <Route path="/addevents" element={<AddEvent/>} />
+          <Route path="/profile" element={<Profile/>}/>
         </Routes>
       </Router>
     </SWRConfig>
