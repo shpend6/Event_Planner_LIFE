@@ -1,8 +1,0 @@
-{
-"SpaProxyServer": {
-"ServerUrl": "",
-"LaunchCommand": "",
-"WorkingDirectory": "C:\\Users\\donatk\\Desktop\\temp_project\\EventPlannerBackend",
-"MaxTimeoutInSeconds": "120"
-}
-}
