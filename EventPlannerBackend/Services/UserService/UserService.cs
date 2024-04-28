@@ -105,16 +105,18 @@ public class UserService : IUserService
 
     public async Task<List<Event>> GetUserCreatedEventsAsync(int id)
     {
-        var eventsCreated = await _dbContext.Events.Where(e => e.UserId == id).ToListAsync();
+        var eventsCreated = await _dbContext.Events
+            .Where(e => e.UserId == id)
+            .ToListAsync();
         return eventsCreated;
     }
 
     public async Task<List<Event>> GetUserAttendingEventsAsync(int id)
     {
-        var eventsAttending = await _dbContext.Attendees.Where(a => a.UserId == id).Select(a => a.Event).ToListAsync();
+        var eventsAttending = await _dbContext.Attendees
+            .Where(a => a.UserId == id)
+            .Select(a => a.Event)
+            .ToListAsync();
         return eventsAttending;
     }
-
-    // Implement function in UserService to update user info
-    // User password should be updated in a separate function (ResetPasswordAsync)
 }

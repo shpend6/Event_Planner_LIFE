@@ -1,4 +1,5 @@
 ﻿using Amazon.S3;
+using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using EventPlanner.Database;
 using EventPlanner.Models;
@@ -78,7 +79,7 @@ public class EventService : IEventService
     public async Task<string> SaveImageAsync(IFormFile imageFile)
     {
         if (imageFile == null || imageFile.Length == 0)
-            return null;
+            throw new ArgumentNullException("No image file provided.");
 
         DotNetEnv.Env.Load();
 
@@ -86,6 +87,7 @@ public class EventService : IEventService
         string bucketName = "bucket-3yw4ka";
         string accessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
         string secretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+
         // Create an S3 client
         var s3Client = new AmazonS3Client(accessKeyId, secretAccessKey, Amazon.RegionEndpoint.USEast1);
 
