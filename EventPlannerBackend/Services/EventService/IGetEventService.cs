@@ -9,7 +9,7 @@ public interface IGetEventService
     Task<IEnumerable<Event>> GetAllEventsAsync();
     Task<Event> GetEventByIdAsync(int id);
     Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName);
-    Task<IEnumerable<GetEventsSummaryDto>> GetEventsByStateAsync(string state);
+    Task<GetEventsByStateDto> GetEventsByStateAsync(string state);
     Task<IEnumerable<GetAttendeeDto>> GetAttendeesByEventIdAsync(int id);
     Task<IEnumerable<Event>> SearchEventsAsync(string query);
     Task<IEnumerable<GetEventsSummaryDto>> GetFutureEventsAsync();

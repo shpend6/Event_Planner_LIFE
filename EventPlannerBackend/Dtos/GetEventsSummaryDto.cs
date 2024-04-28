@@ -2,6 +2,8 @@
 
 public class GetEventsSummaryDto
 {
+    public int Id { get; set; }
+
     public string ImagePath { get; set; }
 
     public string Organization { get; set; }

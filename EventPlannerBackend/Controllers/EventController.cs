@@ -70,9 +70,16 @@ public class EventController : ControllerBase
     public async Task<IActionResult> GetEventsByState()
     {
         var userState = HttpContext.User.FindFirstValue("userState");
+        try
+        {
+            var eventsByState = await _getEventService.GetEventsByStateAsync(userState);
+            return Ok(eventsByState);
+        }
+        catch (KeyNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
 
-        var eventsByState = await _getEventService.GetEventsByStateAsync(userState);
-        return Ok(eventsByState);
     }
 
     [HttpGet("{id}/attendees")]
