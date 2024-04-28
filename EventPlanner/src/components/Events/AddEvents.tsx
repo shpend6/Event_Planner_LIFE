@@ -3,7 +3,7 @@ import { Container, Form, Button, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./AddEvents.css";
-import { getUserInfoFromToken } from "../../utils/useUserFromToken";
+// import { getUserInfoFromToken } from "../../utils/useUserFromToken";
 
 const AddEventForm = () => {
   // State variables for managing form inputs, loading, and errors
@@ -79,7 +79,6 @@ const AddEventForm = () => {
       const response = await fetch("https://localhost:7142/api/events", {
         method: "POST",
         headers: {
-          "Content-Type": "*/*",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(eventData),

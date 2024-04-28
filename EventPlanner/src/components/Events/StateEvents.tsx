@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { useEventsFromCategory } from "../../hooks/useEventsFromCategory";
-import { Link, useParams } from "react-router-dom";
+import { useEventsFromState } from "../../hooks/use-Events-From-State";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Modal } from "react-bootstrap";
 import Navbar from "../Navbar";
 import EventFooter from "../Footer/Footer";
@@ -9,24 +9,16 @@ import { parseDate } from "../../utils/parseDate";
 import { parseHour } from "../../utils/parseHour";
 import joinEvent from "../../hooks/useCreateAttendee"; // Import the joinEvent hook
 import "./CategoryEvents.css";
-import EventAttendees from "./EventAttendees";
-// interface Props {
-//   eventId: number;
-// }
+
 const EventsList: React.FC = () => {
-  interface Event {
-    id: number;
-    title: string;
-    organization: string;
-    startTime: string;
-    endTime: string;
-    description: string;
-    imagePath: string;
+  const navigate = useNavigate();
+  const bearerToken = localStorage.getItem("token") || "";
+  if (bearerToken == "") {
+    navigate("/login");
   }
-  const { categoryName } = useParams<{ categoryName?: string }>();
-  const { data, isLoading, error } = useEventsFromCategory(categoryName ?? "");
+  const { data, isLoading, error } = useEventsFromState(bearerToken);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [responseData, setResponseData] = useState<any>(null); // State to hold response data
+  const [responseData, setResponseData] = useState<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -41,7 +33,7 @@ const EventsList: React.FC = () => {
     }
   }, [responseData]);
 
-  const handleEventClick = (event: Event) => {
+  const handleEventClick = (event: unknown) => {
     setSelectedEvent(event);
     setShowModal(true);
   };
@@ -51,7 +43,8 @@ const EventsList: React.FC = () => {
   };
 
   const handleJoinEvent = async (eventId: string) => {
-    const bearerToken = localStorage.getItem("token");
+    console.log(bearerToken); // Get the token from localStorage
+    console.log(eventId);
     if (bearerToken) {
       try {
         const data = await joinEvent(eventId, bearerToken); // Call the joinEvent hook
@@ -75,7 +68,7 @@ const EventsList: React.FC = () => {
     data && (
       <div>
         <Navbar />
-        <h1>{categoryName}</h1>
+        <h1>Events Near you</h1>
         <div className="events">
           {data.events.map((event) => (
             <div key={event.id}>
@@ -128,7 +121,6 @@ const EventsList: React.FC = () => {
                 {parseHour(selectedEvent.endTime)}
               </p>
               <p>Description: {selectedEvent.description}</p>
-              <EventAttendees eventId={selectedEvent.id} />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseModal}>
@@ -145,8 +137,6 @@ const EventsList: React.FC = () => {
                   <pre>{responseData}</pre>
                 </div>
               )}
-              <br></br>
-              {/* <EventAttendees eventId={selectedEvent.id} /> */}
             </Modal.Footer>
           </Modal>
         )}

@@ -37,7 +37,6 @@ public class Event
     [Required]
     public int MaxCapacity { get; set; }
 
-    [Required]
     public string ImagePath { get; set; }
 
     [Required]

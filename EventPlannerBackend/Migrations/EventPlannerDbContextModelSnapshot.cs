@@ -45,7 +45,7 @@ namespace EventPlannerBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Attendees");
+                    b.ToTable("Attendees", (string)null);
                 });
 
             modelBuilder.Entity("EventPlanner.Models.Event", b =>
@@ -102,7 +102,7 @@ namespace EventPlannerBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("EventPlanner.Models.User", b =>
@@ -138,7 +138,7 @@ namespace EventPlannerBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("EventPlannerBackend.Models.Category", b =>
@@ -155,7 +155,7 @@ namespace EventPlannerBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("EventPlanner.Models.Attendee", b =>

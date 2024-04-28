@@ -38,6 +38,8 @@ public class GetEventService : IGetEventService
 
     public async Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName)
     {
+
+        var utcNow = DateTime.UtcNow;
         var categoryExists = await _dbContext.Categories
         .FirstOrDefaultAsync(c => c.Name == categoryName);
 
@@ -46,7 +48,7 @@ public class GetEventService : IGetEventService
 
         var eventsByCategory = await _dbContext.Events
             .Include(e => e.Category)
-            .Where(e => e.Category.Name == categoryName)
+            .Where(e => e.Category.Name == categoryName && e.StartTime > utcNow)
             .ToListAsync();
 
         return new GetEventsByCategoryDto
@@ -56,17 +58,18 @@ public class GetEventService : IGetEventService
         };
     }
 
-    public async Task<IEnumerable<GetEventsSummaryDto>> GetEventsByStateAsync(string state)
+    public async Task<GetEventsByStateDto> GetEventsByStateAsync(string state)
     {
-        return await _dbContext.Events.Where(e => e.State == state)
-            .Select(e => new GetEventsSummaryDto
-            {
-                ImagePath = e.ImagePath,
-                Organization = e.Organization,
-                Title = e.Title,
-                StartTime = e.StartTime
-            })
+
+        var utcNow = DateTime.UtcNow;
+        var eventsByState = await _dbContext.Events
+            .Where(e => e.State == state && e.StartTime > utcNow)
             .ToListAsync();
+
+        return new GetEventsByStateDto
+        {
+            Events = eventsByState
+        };
     }
 
     public async Task<IEnumerable<GetAttendeeDto>> GetAttendeesByEventIdAsync(int id)
