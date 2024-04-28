@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { useEventsFromState } from "../../hooks/use-Events-From-State";
+import { useEventsFromState } from "../../hooks/useEventsFromState";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Modal } from "react-bootstrap";
 import Navbar from "../Navbar";

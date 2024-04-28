@@ -1,46 +1,20 @@
-import { getJoinedEvents } from "../utils/useJoinedEvents";
 import EventNavbar from "../components/Navbar";
 import EventFooter from "../components/Footer/Footer";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import './ProfilePage.css'
+import "./ProfilePage.css";
+import { getUserInfoFromToken } from "../utils/useUserFromToken";
+import EventsCreated from "../components/Events/EventsCreated";
+import EventsAttending from "../components/Events/EventsAttending";
 
-function Profile(){
-    const eventInfo = getJoinedEvents(); //Shpend check this
+function Profile() {
+  const userInfo = getUserInfoFromToken();
 
-    return(
-        <>
-        <EventNavbar/>
-        {eventInfo === null ? (
-            <p>You didn't attend any event</p>
-        ) : (
-            <>
-            <h3>Events Joined</h3>
-            <div className="user-profile">
-            <Card style={{ width: '18rem' }} className="user-profile-card">
-              <Card.Img variant="top" src="{eventinfo?.imagePath}" />
-              <Card.Body>
-                <Card.Title>Hi, {eventInfo?.title}</Card.Title>
-                <Button variant="primary">Cancel</Button>
-               </Card.Body>
-              </Card>
-            </div>
-            <h3>Events Created</h3>
-            <div className="user-profile">
-            <Card style={{ width: '18rem' }} className="user-profile-card">
-              <Card.Img variant="top" src="{eventinfo?.imagePath}" />
-              <Card.Body>
-                <Card.Title>Hi, {eventInfo?.title}</Card.Title>
-                <Button variant="primary">Delete</Button>
-               </Card.Body>
-              </Card>
-            </div>
-            </>
-        )}
-        <EventFooter/>
-        
-        </>
-    );
-    
+  return (
+    <>
+      <EventNavbar />
+      <EventsAttending userId={userInfo?.userId || ""} />
+      <EventsCreated userId={userInfo?.userId || ""} />
+      <EventFooter />
+    </>
+  );
 }
 export default Profile;
