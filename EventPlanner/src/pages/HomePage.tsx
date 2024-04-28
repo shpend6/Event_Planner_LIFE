@@ -5,6 +5,7 @@ import ControlledCarousel from "../components/Slider";
 import Body from "../components/Body/Body";
 import EventFooter from "../components/Footer/Footer";
 import EventNavbar from "../components/Navbar";
+import { Card } from "react-bootstrap";
 
 interface User {
   id: number;
@@ -18,7 +19,7 @@ interface User {
 
 const fetcher = (url: string) => axios.get<User[]>(url).then((res) => res.data);
 
-const UserList: React.FC = () => {
+const HomePage: React.FC = () => {
   const { data: users, error } = useSWR<User[]>(
     "https://localhost:7142/api/users",
     fetcher
@@ -32,13 +33,7 @@ const UserList: React.FC = () => {
       <EventNavbar />
       <ControlledCarousel />
       <Body />
-      <EventFooter />
-    </>
-  );
-};
-
-export default UserList;
-/*<h1>User List</h1>
+      <h1>User List</h1>
       <div className="row">
         {users.map((user) => (
           <div key={user.id}>
@@ -52,4 +47,10 @@ export default UserList;
             </Card>
           </div>
         ))}
-      </div> */
+      </div>
+      <EventFooter />
+    </>
+  );
+};
+
+export default HomePage;

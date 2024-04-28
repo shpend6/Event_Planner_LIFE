@@ -30,8 +30,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/eventdetails/:eventId" element={<EventDetails />} />
           <Route path="/" element={<CategoriesGrid />} />
           <Route path="/events/:categoryName" element={<EventsList />} />
-          <Route path="/addevents" element={<AddEvent/>} />
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/addevents" element={<AddEvent />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/addevents" element={<AddEvent />} />
           <Route path="/nearYou" element={<StateEvents />} />
         </Routes>

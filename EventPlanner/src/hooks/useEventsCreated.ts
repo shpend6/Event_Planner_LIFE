@@ -18,13 +18,9 @@ type Event = {
   attendees: number;
 };
 
-// type EventsAttending = {
-//   userId: string;
-//   events: Event[];
-// };
-export const useEventsAttending = (userId: string) => {
+export const useEventsCreated = (userId: string) => {
   const { data, isLoading, error } = useSWR<Event[]>(
-    `https://localhost:7142/api/users/${userId}/events-attending`
+    `https://localhost:7142/api/users/${userId}/events-created`
   );
   return { data, isLoading, error };
 };

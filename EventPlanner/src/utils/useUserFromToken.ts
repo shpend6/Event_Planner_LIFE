@@ -15,7 +15,6 @@ export const getUserInfoFromToken = (): DecodedToken | null => {
   if (token) {
     try {
       const decodedToken: DecodedToken = jwtDecode(token);
-      console.log(decodedToken)
       return decodedToken;
     } catch (error) {
       // Handle decoding errors, token tampering, or invalid tokens
