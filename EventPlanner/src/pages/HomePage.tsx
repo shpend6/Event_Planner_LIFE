@@ -5,7 +5,6 @@ import ControlledCarousel from "../components/Slider";
 import Body from "../components/Body/Body";
 import EventFooter from "../components/Footer/Footer";
 import EventNavbar from "../components/Navbar";
-import { Card } from "react-bootstrap";
 
 interface User {
   id: number;

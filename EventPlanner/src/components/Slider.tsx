@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import "./Slider.css"
+import { useState } from 'react';
 
 function ControlledCarousel() {
   const [index, setIndex] = useState<number>(0); // Specify the type as number

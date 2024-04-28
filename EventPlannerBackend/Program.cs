@@ -21,10 +21,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:5174", "http://localhost:5173", "http://localhost:32768")
+                          policy.WithOrigins("http://localhost:5174", "http://localhost:5173", "http://localhost:7142")
                                 .AllowAnyMethod() // Allow any HTTP method
                                 .AllowAnyHeader(); // Allow any header
-                          policy.WithOrigins("http://localhost:5174", "http://localhost:5173", "http://localhost:32768");
+                          policy.WithOrigins("http://localhost:5174", "http://localhost:5173", "http://localhost:7142");
                           //https:localhost:7142 add this?
                       });
 });

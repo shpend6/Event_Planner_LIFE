@@ -1,0 +1,41 @@
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build outputs
+build/
+dist/
+out/
+
+# Development tool configuration
+.git/
+.gitignore
+.dockerignore
+README.md
+LICENSE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs
+
+# Operating system generated files
+.DS_Store
+Thumbs.db
+
+# Optional: Exclude source files (only if you are pre-building outside Docker)
+src/
+public/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing and documentation
+__tests__/
+coverage/
+*.md
