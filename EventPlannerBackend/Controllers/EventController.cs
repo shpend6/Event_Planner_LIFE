@@ -79,7 +79,6 @@ public class EventController : ControllerBase
         {
             return NotFound(exception.Message);
         }
-
     }
 
     [HttpGet("{id}/attendees")]

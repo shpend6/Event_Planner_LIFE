@@ -27,8 +27,8 @@ public class CategoryService : ICategoryService
         if (string.IsNullOrWhiteSpace(newCategory.Name))
             throw new ArgumentException("Category name cannot be empty.");
 
-        bool categoryEists = await _dbContext.Categories.AnyAsync(c => c.Name == newCategory.Name);
-        if (categoryEists)
+        bool categoryExists = await _dbContext.Categories.AnyAsync(c => c.Name == newCategory.Name);
+        if (categoryExists)
             throw new InvalidOperationException("Category with the same name already exists.");
 
         _dbContext.Categories.Add(newCategory);

@@ -18,6 +18,7 @@ public class GetEventService : IGetEventService
     {
         return await _dbContext.Events.Select(e => new GetEventsSummaryDto
         {
+            Id = e.Id,
             ImagePath = e.ImagePath,
             Organization = e.Organization,
             Title = e.Title,
@@ -38,10 +39,8 @@ public class GetEventService : IGetEventService
 
     public async Task<GetEventsByCategoryDto> GetEventsByCategoryAsync(string categoryName)
     {
-
         var utcNow = DateTime.UtcNow;
-        var categoryExists = await _dbContext.Categories
-        .FirstOrDefaultAsync(c => c.Name == categoryName);
+        var categoryExists = await _dbContext.Categories.FirstOrDefaultAsync(c => c.Name == categoryName);
 
         if (categoryExists == null)
             throw new KeyNotFoundException("Category not found.");
@@ -60,7 +59,6 @@ public class GetEventService : IGetEventService
 
     public async Task<GetEventsByStateDto> GetEventsByStateAsync(string state)
     {
-
         var utcNow = DateTime.UtcNow;
         var eventsByState = await _dbContext.Events
             .Where(e => e.State == state && e.StartTime > utcNow)
@@ -110,6 +108,7 @@ public class GetEventService : IGetEventService
             .Where(e => e.StartTime > utcNow)
             .Select(e => new GetEventsSummaryDto
             {
+                Id = e.Id,
                 ImagePath = e.ImagePath,
                 Organization = e.Organization,
                 Title = e.Title,
@@ -126,6 +125,7 @@ public class GetEventService : IGetEventService
             .Where(e => e.EndTime < utcNow)
             .Select(e => new GetEventsSummaryDto
             {
+                Id = e.Id,
                 ImagePath = e.ImagePath,
                 Organization = e.Organization,
                 Title = e.Title,
