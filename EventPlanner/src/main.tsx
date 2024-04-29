@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./index.css";
 import { SWRConfig } from "swr";
 import AboutComponent from "./pages/AboutUs.tsx";
 import HomeComponent from "./pages/HomePage.tsx";
