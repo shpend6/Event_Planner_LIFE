@@ -5,7 +5,7 @@ type Users = {
   firstName: string;
   lastName: string;
   email: string;
-  createdEvents: unknown; // You can define the type for these properties as well if needed
+  createdEvents: unknown;
   eventsAttending: unknown;
 }[];
 

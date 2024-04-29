@@ -125,6 +125,7 @@ public class EventController : ControllerBase
 
             var eventToCreate = new Event
             {
+
                 UserId = int.Parse(userId),
                 Organization = newEvent.Organization,
                 Title = newEvent.Title,

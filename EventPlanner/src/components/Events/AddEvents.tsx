@@ -1,122 +1,148 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Spinner } from "react-bootstrap";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./AddEvents.css";
-// import { getUserInfoFromToken } from "../../utils/useUserFromToken";
+import { useCategories } from "../../hooks/useCategories";
+import { Container, Form, Button } from "react-bootstrap";
+import countries from "i18n-iso-countries";
+import englishLocale from "i18n-iso-countries/langs/en.json";
 
-const AddEventForm = () => {
-  // State variables for managing form inputs, loading, and errors
-  const [organization, setOrganization] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [state, setState] = useState("");
-  const [starttime, setStarttime] = useState("");
-  const [endtime, setEndtime] = useState("");
-  const [location, setLocation] = useState("");
-  const [maxcapacity, setMaxcapacity] = useState("");
-  const [imagefile, setImagefile] = useState("");
-  const [categoryid, setCategoryid] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+countries.registerLocale(englishLocale);
+const countryCodes = countries.getNames("en");
+
+// Convert country codes object into an array of { code: string, name: string }
+const countryOptions = Object.keys(countryCodes).map((code) => ({
+  code,
+  name: countryCodes[code],
+}));
+interface EventForm {
+  organization: string;
+  title: string;
+  description: string;
+  state: string;
+  location: string;
+  startTime: string;
+  endTime: string;
+  maxCapacity: number;
+  categoryId: number;
+  imageFile?: File;
+}
+
+const CreateEventComponent: React.FC = () => {
+  const { data: categories, isLoading, error } = useCategories();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState<EventForm>({
+    organization: "",
+    title: "",
+    description: "",
+    state: "",
+    location: "",
+    startTime: "",
+    endTime: "",
+    maxCapacity: 0,
+    categoryId: 0,
+  });
+  type FormControlElement =
+    | HTMLInputElement
+    | HTMLSelectElement
+    | HTMLTextAreaElement;
+  const handleChange = (e: React.ChangeEvent<FormControlElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  const token = localStorage.getItem("token");
+  // Handles file input changes specifically
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = e.target;
+    if (files && files.length > 0) {
+      setFormData({
+        ...formData,
+        [name]: files[0],
+      });
+    }
+  };
 
-  // Function to handle form submission
+  const formatDateTime = (isoString: string) => {
+    const dateTime = new Date(isoString);
+    const timeZoneOffset = -dateTime.getTimezoneOffset() / 60;
+    const formattedDate = dateTime.toISOString().replace("Z", "");
+    const timeZone = `${timeZoneOffset >= 0 ? "+" : "-"}${Math.abs(
+      timeZoneOffset
+    )
+      .toString()
+      .padStart(2, "0")}:00`;
+    return `${formattedDate}${timeZone}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      // Create userData object with form input values
-      const eventData = {
-        organization,
-        title,
-        description,
-        state,
-        starttime,
-        endtime,
-        location,
-        maxcapacity,
-        imagefile,
-        categoryid,
-      };
-      // Reset form inputs, error, and loading state after successful signup
-      await addevent(eventData);
-      setOrganization("");
-      setTitle("");
-      setDescription("");
-      setState("");
-      setStarttime("");
-      setEndtime("");
-      setLocation("");
-      setMaxcapacity("");
-      setImagefile("");
-      setCategoryid("");
-      setError("");
-      setLoading(false);
-      navigate("/");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setError(error.message); // Set error message if signup fails
-      setLoading(false);
-    }
-  };
 
-  const addevent = async (eventData: {
-    organization: string;
-    title: string;
-    description: string;
-    state: string;
-    starttime: string;
-    endtime: string;
-    location: string;
-    maxcapacity: string;
-    imagefile: string;
-    categoryid: string;
-  }) => {
-    try {
-      const response = await fetch("https://localhost:7142/api/events", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(eventData),
-      });
-      console.log("Response status:", response.status);
-      const data = await response.json();
-      console.log("Response data:", data);
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to add Event");
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key === "startTime" || key === "endTime") {
+        data.append(key, formatDateTime(value));
+      } else if (value instanceof File) {
+        data.append(key, value, value.name);
+      } else if (value != null) {
+        data.append(key, value.toString());
       }
-      return data;
+    });
+
+    if (formData.imageFile instanceof File) {
+      data.append("imageFile", formData.imageFile, formData.imageFile.name);
+    }
+
+    const bearerToken = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    };
+    try {
+      const response = await axios.post(
+        "https://localhost:7142/api/events",
+        data,
+        config
+      );
+      console.log("Event created:", response.data);
+      navigate("/profile");
+      // Handle further logic after event creation (e.g., redirect, display message)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.message || "Failed to add Event");
-      setLoading(false);
+      console.error(
+        "Error creating event:",
+        error.response?.data || error.message
+      );
     }
   };
-
+  if (isLoading) return <div>Loading categories...</div>;
+  if (error) return <div>Error loading categories!</div>;
   return (
     <Container
       fluid
       className="d-flex justify-content-center align-items-center"
+      style={{ backgroundColor: "#2d2d32", height: "100vh", padding: "0" }}
     >
       <Form
         onSubmit={handleSubmit}
         className="p-4 rounded shadow border border-white"
+        style={{ maxWidth: "800px", width: "100%", color: "#f9f9f9" }}
       >
         <h2 className="text-center mb-4">
-          <span> Add Event </span>
+          <span>Create Event</span>
         </h2>
         <Form.Group controlId="formOrganization" className="mb-3">
           <Form.Label>Organization</Form.Label>
           <Form.Control
             type="text"
-            placeholder="LIFE"
-            value={organization}
-            onChange={(e) => setOrganization(e.target.value)}
+            placeholder="Enter organization"
+            name="organization"
+            value={formData.organization}
+            onChange={handleChange}
             className="py-2 px-3 border border-white rounded"
+            required
           />
         </Form.Group>
 
@@ -124,10 +150,12 @@ const AddEventForm = () => {
           <Form.Label>Title</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
             className="py-2 px-3 border border-white rounded"
+            required
           />
         </Form.Group>
 
@@ -135,110 +163,124 @@ const AddEventForm = () => {
           <Form.Label>Description</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
             className="py-2 px-3 border border-white rounded"
           />
         </Form.Group>
 
         <Form.Group controlId="formState" className="mb-3">
-          <Form.Label>State</Form.Label>
-          <Form.Control
-            as="select"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
+          <Form.Label>Country</Form.Label>
+          <Form.Select
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
             className="py-2 px-3 border border-white rounded"
+            required
           >
-            <option value="">Select your state</option>
-            <option value="Germany">Germany</option>
-            <option value="Kosovo">Kosovo</option>
-            <option value="Canada">Canada</option>
-          </Form.Control>
+            <option value="">Select a country</option>
+            {countryOptions.map((country) => (
+              <option key={country.code} value={country.name}>
+                {country.name}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+        {/* Other form fields */}
+
+        <Form.Group controlId="formLocation" className="mb-3">
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter location"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            className="py-2 px-3 border border-white rounded"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formStartTime" className="mb-3">
+          <Form.Label>Start Time</Form.Label>
+          <Form.Control
+            type="datetime-local"
+            name="startTime"
+            value={formData.startTime}
+            onChange={handleChange}
+            className="py-2 px-3 border border-white rounded"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formEndTime" className="mb-3">
+          <Form.Label>End Time</Form.Label>
+          <Form.Control
+            type="datetime-local"
+            name="endTime"
+            value={formData.endTime}
+            onChange={handleChange}
+            className="py-2 px-3 border border-white rounded"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formMaxCapacity" className="mb-3">
+          <Form.Label>Max Capacity</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter max capacity"
+            name="maxCapacity"
+            value={formData.maxCapacity}
+            onChange={handleChange}
+            className="py-2 px-3 border border-white rounded"
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="formCategory" className="mb-3">
           <Form.Label>Category</Form.Label>
           <Form.Control
             as="select"
-            value={categoryid}
-            onChange={(e) => setCategoryid(e.target.value)}
+            name="categoryId"
+            value={formData.categoryId}
+            onChange={handleChange}
             className="py-2 px-3 border border-white rounded"
+            required
           >
-            <option value="">Select your category</option>
-            <option value="1">Music</option>
-            <option value="2">Dance</option>
-            <option value="3">Opera</option>
-            <option value="4">Health</option>
-            <option value="5">Holidays</option>
-            <option value="6">Hobbies</option>
-            <option value="7">Bussines</option>
-            <option value="8">Food & Drinks</option>
-            <option value="9">Nightlife</option>
+            <option value="">Select a category</option>
+            {categories?.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
           </Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="formStarttime" className="mb-3">
-          <Form.Label>Starttime</Form.Label>
-          <Form.Control
-            type="time"
-            placeholder="Enter your last name"
-            value={starttime}
-            onChange={(e) => setStarttime(e.target.value)}
-            className="py-2 px-3 border border-white rounded"
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formEndtime" className="mb-3">
-          <Form.Label>Endtime</Form.Label>
-          <Form.Control
-            type="time"
-            placeholder="Enter your last name"
-            value={endtime}
-            onChange={(e) => setEndtime(e.target.value)}
-            className="py-2 px-3 border border-white rounded"
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formMaxcapacity" className="mb-3">
-          <Form.Label>Max Capacity</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="500"
-            value={maxcapacity}
-            onChange={(e) => setMaxcapacity(e.target.value)}
-            className="py-2 px-3 border border-white rounded"
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formImagefile" className="mb-3">
-          <Form.Label>Password</Form.Label>
+        <Form.Group controlId="formImage" className="mb-3">
+          <Form.Label>Image</Form.Label>
           <Form.Control
             type="file"
-            placeholder="Photo"
-            value={imagefile}
-            onChange={(e) => setImagefile(e.target.value)}
-            className="py-2 px-3 border border-white rounded"
+            name="imageFile"
+            onChange={handleImageChange}
           />
         </Form.Group>
-
-        {error && <div className="text-danger mb-3">{error}</div>}
-
         <Button
           type="submit"
-          disabled={loading}
-          className="py-2 addevent-btn"
+          className="py-2 login-btn"
           style={{
             background:
               "linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%)",
             border: "none",
           }}
         >
-          {loading ? <Spinner animation="border" size="sm" /> : "Add"}
+          Create Event
         </Button>
       </Form>
     </Container>
   );
 };
 
-export default AddEventForm;
+export default CreateEventComponent;

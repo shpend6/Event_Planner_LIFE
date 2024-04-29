@@ -8,6 +8,7 @@ public class EventPlannerDbContext : DbContext
 {
     public EventPlannerDbContext(DbContextOptions<EventPlannerDbContext> options) : base(options)
     { 
+
     }
 
     public DbSet<User> Users { get; set; }

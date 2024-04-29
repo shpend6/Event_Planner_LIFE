@@ -12,10 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using DotNetEnv;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
-
+Env.Load();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -30,7 +31,22 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<EventPlannerDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("EventPlannerDb")));
+{
+    Env.Load();
+    var host = Environment.GetEnvironmentVariable("DB_HOST");
+    var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+    var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    var connectionString = $"Host={host}; Database={dbName}; Username={dbUser}; Password={dbPassword}; Port=5432; SSL Mode=Require; Trust Server Certificate=true";
+    Console.WriteLine("Environment Variables:");
+    Console.WriteLine($"DB_HOST: {Environment.GetEnvironmentVariable("DB_HOST")}");
+    Console.WriteLine($"DB_NAME: {Environment.GetEnvironmentVariable("DB_NAME")}");
+    Console.WriteLine($"DB_USER: {Environment.GetEnvironmentVariable("DB_USER")}");
+    Console.WriteLine(dbPassword);
+
+    options.UseNpgsql(connectionString);
+});
+
 
 // Add services to the container.
 builder.Services.AddScoped<PasswordHasher<User>>();

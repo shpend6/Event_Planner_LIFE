@@ -1,0 +1,13 @@
+.main-content {
+  margin-top: 60px; /* Adjust according to your navbar height */
+  margin-bottom: 60px; /* Adjust according to your footer height */
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .main-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
