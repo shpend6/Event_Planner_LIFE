@@ -1,0 +1,9 @@
+.user-attending-profile{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.card-img-top{
+    height: 200px;
+}

@@ -1,0 +1,12 @@
+.user-created-profile{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.card-img-top{
+    height: 200px;
+}
+.user-created-profile-card{
+    border: 1px solid blueviolet;
+}

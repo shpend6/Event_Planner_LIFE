@@ -1,6 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { useEventsCreated } from "../../hooks/useEventsCreated";
 import deleteEvent from "../../hooks/useDeleteEvent";
+import './EventsCreated.css'
 
 interface Props {
   userId: string;
@@ -38,9 +39,10 @@ function EventsCreated({ userId }: Props) {
   ) : (
     <>
       <h3>Events Created</h3>
+      <div className="user-created-profile">
       {data?.map((e) => (
-        <div className="user-profile">
-          <Card style={{ width: "18rem" }} className="user-profile-card">
+        <div className="card">
+          <Card  className="user-created-profile-card">
             <Card.Img
               variant="top"
               src={`https://bucket-3yw4ka.s3.amazonaws.com/${e.imagePath}`}
@@ -59,6 +61,7 @@ function EventsCreated({ userId }: Props) {
           </Card>
         </div>
       ))}
+      </div>
     </>
   );
 }

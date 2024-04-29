@@ -1,6 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { useEventsAttending } from "../../hooks/useEventsAttending";
 import cancelEvent from "../../hooks/useCancelEvent";
+import './EventsAttending.css'
 
 interface Props {
   userId: string;
@@ -38,6 +39,7 @@ function EventsAttending({ userId }: Props) {
   ) : (
     <>
       <h3>Events Attending</h3>
+      <div className="user-attending-profile">
       {data?.map((e) => (
         <div className="user-profile">
           <Card style={{ width: "18rem" }} className="user-profile-card">
@@ -58,6 +60,7 @@ function EventsAttending({ userId }: Props) {
           </Card>
         </div>
       ))}
+      </div>
     </>
   );
 }
