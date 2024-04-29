@@ -3,7 +3,6 @@ node_modules/
 bower_components/
 
 # Build outputs
-build/
 dist/
 out/
 
@@ -23,10 +22,6 @@ logs
 # Operating system generated files
 .DS_Store
 Thumbs.db
-
-# Optional: Exclude source files (only if you are pre-building outside Docker)
-src/
-public/
 
 # Environment files
 .env

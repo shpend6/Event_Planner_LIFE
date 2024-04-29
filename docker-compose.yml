@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  frontend:
+    image: eventplanner_front
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: eventplanner_back
+    ports:
+      - "5198:80"
+      - "7142:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    env_file:
+      - ./EventPlannerBackend/.env
+    volumes:
+      - ./EventPlannerBackend/.env:/app/.env
+      - ./DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+      - ${USERPROFILE}/.aspnet/https:/root/.aspnet/https
+
+# Unresolved Errors
+# backend-1   | warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+# backend-1   |       No XML encryptor configured. Key {17574aac-3c58-4242-9b1e-0897b69d7c76} may be persisted to storage in unencrypted form.
+# backend-1   | Unhandled exception. System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
